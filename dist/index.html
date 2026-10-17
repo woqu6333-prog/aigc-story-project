@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="courage">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="星光故事屋：根据孩子的名字、年龄、兴趣和主题，生成个性化儿童故事。"
+    />
+    <title>星光故事屋｜个性化儿童故事</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="sky-decoration" aria-hidden="true">
+      <span class="star star-one"></span>
+      <span class="star star-two"></span>
+      <span class="star star-three"></span>
+      <span class="cloud cloud-one"></span>
+      <span class="cloud cloud-two"></span>
+    </div>
+
+    <main class="page-shell">
+      <header class="hero-section">
+        <div class="brand-row">
+          <a class="brand" href="#top" aria-label="返回星光故事屋首页">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <path d="M8 13.5c5.5 0 10.2 1.9 16 6.2 5.8-4.3 10.5-6.2 16-6.2v23c-5.7 0-10.6 1.7-16 5.5-5.4-3.8-10.3-5.5-16-5.5v-23Z" />
+                <path d="M24 19.7V42" />
+                <path class="spark" d="m24 4 1.8 4.2L30 10l-4.2 1.8L24 16l-1.8-4.2L18 10l4.2-1.8L24 4Z" />
+              </svg>
+            </span>
+            <span>星光故事屋</span>
+          </a>
+          <span class="course-badge">AIGC课程 · 作业0</span>
+        </div>
+
+        <div class="hero-copy" id="top">
+          <p class="eyebrow">今晚的主角，由你来决定</p>
+          <h1>把一个小小的名字，<br /><span>变成一场大大的冒险。</span></h1>
+          <p class="hero-description">
+            填写孩子的信息，挑选一个故事主题。只需几秒钟，就能收获一篇专属于TA的睡前故事。
+          </p>
+        </div>
+
+        <ol class="steps" aria-label="故事生成步骤">
+          <li><span>1</span>填写灵感</li>
+          <li><span>2</span>选择主题</li>
+          <li><span>3</span>收获故事</li>
+        </ol>
+      </header>
+
+      <section class="creator-layout" aria-label="故事创作区">
+        <aside class="form-card">
+          <div class="section-heading">
+            <span class="heading-icon" aria-hidden="true">✦</span>
+            <div>
+              <p class="section-kicker">创作卡片</p>
+              <h2>今天想听谁的故事？</h2>
+            </div>
+          </div>
+
+          <form id="storyForm" novalidate>
+            <div class="form-field">
+              <label for="heroName">主角名字</label>
+              <input
+                id="heroName"
+                name="heroName"
+                type="text"
+                maxlength="12"
+                placeholder="例如：小雨"
+                autocomplete="off"
+                aria-describedby="heroNameHint heroNameError"
+              />
+              <div class="field-meta">
+                <small id="heroNameHint">1–12个字符</small>
+                <small class="field-error" id="heroNameError"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="heroAge">主角年龄</label>
+                <div class="input-with-suffix">
+                  <input
+                    id="heroAge"
+                    name="heroAge"
+                    type="number"
+                    min="3"
+                    max="12"
+                    placeholder="7"
+                    inputmode="numeric"
+                    aria-describedby="heroAgeError"
+                  />
+                  <span>岁</span>
+                </div>
+                <small class="field-error" id="heroAgeError"></small>
+              </div>
+
+              <div class="form-field">
+                <label for="heroInterest">TA喜欢什么？</label>
+                <input
+                  id="heroInterest"
+                  name="heroInterest"
+                  type="text"
+                  maxlength="20"
+                  placeholder="例如：恐龙、画画"
+                  autocomplete="off"
+                  aria-describedby="heroInterestError"
+                />
+                <small class="field-error" id="heroInterestError"></small>
+              </div>
+            </div>
+
+            <fieldset class="theme-fieldset">
+              <legend>选择故事主题</legend>
+              <div class="theme-options">
+                <label class="theme-option">
+                  <input type="radio" name="theme" value="courage" checked />
+                  <span class="theme-option-card">
+                    <span class="theme-symbol" aria-hidden="true">★</span>
+                    <strong>勇气冒险</strong>
+                    <small>学会面对未知</small>
+                  </span>
+                </label>
+                <label class="theme-option">
+                  <input type="radio" name="theme" value="friendship" />
+                  <span class="theme-option-card">
+                    <span class="theme-symbol" aria-hidden="true">♥</span>
+                    <strong>友谊成长</strong>
+                    <small>发现分享的快乐</small>
+                  </span>
+                </label>
+                <label class="theme-option">
+                  <input type="radio" name="theme" value="nature" />
+                  <span class="theme-option-card">
+                    <span class="theme-symbol" aria-hidden="true">●</span>
+                    <strong>自然守护</strong>
+                    <small>保护共同的家园</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <button class="primary-button" type="submit">
+              <span>生成我的故事</span>
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="privacy-note">所有信息只保存在当前浏览器中，不会上传到网络。</p>
+          </form>
+        </aside>
+
+        <section class="story-card" aria-labelledby="storyPanelTitle">
+          <div class="story-card-topline"></div>
+
+          <div class="empty-state" id="emptyState">
+            <div class="book-illustration" aria-hidden="true">
+              <div class="moon">☾</div>
+              <div class="book book-left"></div>
+              <div class="book book-right"></div>
+              <span class="floating-dot dot-one"></span>
+              <span class="floating-dot dot-two"></span>
+              <span class="floating-dot dot-three"></span>
+            </div>
+            <p class="empty-kicker">故事正在星空里等你</p>
+            <h2 id="storyPanelTitle">填好左边的创作卡片<br />故事就会在这里出现</h2>
+            <p>每次生成都会有一点新的变化，试试不同的名字、兴趣和主题吧。</p>
+          </div>
+
+          <div class="story-result" id="storyResult" hidden>
+            <div class="story-toolbar">
+              <span class="story-theme-badge" id="storyThemeLabel">勇气冒险</span>
+              <div class="toolbar-actions">
+                <button class="icon-button" id="regenerateButton" type="button" title="重新生成故事">
+                  <span aria-hidden="true">↻</span><span>换一个</span>
+                </button>
+                <button class="icon-button" id="copyButton" type="button" title="复制故事">
+                  <span aria-hidden="true">▣</span><span>复制</span>
+                </button>
+                <button class="icon-button" id="downloadButton" type="button" title="下载故事">
+                  <span aria-hidden="true">↓</span><span>下载</span>
+                </button>
+              </div>
+            </div>
+
+            <article class="story-paper" id="storyContent">
+              <p class="story-overline">A STORY JUST FOR YOU</p>
+              <h2 id="storyTitle"></h2>
+              <div class="story-meta" id="storyMeta"></div>
+              <div class="story-body" id="storyBody"></div>
+              <div class="moral-box">
+                <span aria-hidden="true">✦</span>
+                <div>
+                  <strong>故事里的小星光</strong>
+                  <p id="storyMoral"></p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <footer>
+        <p>愿每个孩子，都能在故事里遇见勇敢、善意和想象力。</p>
+        <span>星光故事屋 · 2026</span>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

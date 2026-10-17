@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+
+# Temporary outputs
+*.tmp
+*.log
+
+# Large generated media will be managed deliberately in later assignments.
+outputs/videos/*.mp4
+outputs/audio/*.wav
