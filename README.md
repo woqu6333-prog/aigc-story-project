@@ -1,12 +1,13 @@
 # 星光故事屋
 
-《AIGC应用开发实践》课程主线项目。当前版本完成了第1周“作业0：个性化儿童故事网页”，并开始实现第2周“作业1：结构化故事生成器”。
+《AIGC应用开发实践》课程主线项目。当前版本已完成作业0网页、作业1结构化故事生成器代码，以及作业2角色一致的网页绘本。
 
 用户填写主角姓名、年龄和兴趣，再从勇气、友谊、环保三个主题中选择一个，网页会在本地生成专属儿童故事。
 
 ## 在线体验
 
-访问地址：<https://woqu6333-prog.github.io/aigc-story-project/>
+- 作业0故事网页：<https://woqu6333-prog.github.io/aigc-story-project/>
+- 作业2网页绘本：<https://woqu6333-prog.github.io/aigc-story-project/picturebook/>
 
 ## 当前功能
 
@@ -18,12 +19,15 @@
 - 自动保存最近一次输入和故事
 - 支持电脑和手机尺寸
 - 完全离线运行，不上传用户信息，不产生 API 费用
+- 作业1支持三种 Prompt 策略、严格 JSON 校验和自动修复
+- 作业2包含角色设定图、三幅一致性场景图和六页交互绘本
+- 绘本支持按钮、方向键翻页以及浏览器打印为 PDF
 
 ## 快速运行
 
 ### 方法一：直接打开
 
-进入 `dist/` 目录，双击 `index.html`。
+进入 `dist/` 目录，双击 `index.html`；绘本建议使用下方本地服务器方式打开。
 
 ### 方法二：本地服务器运行
 
@@ -37,6 +41,12 @@ python -m http.server 8000 -d dist
 
 ```text
 http://localhost:8000
+```
+
+作业2绘本地址：
+
+```text
+http://localhost:8000/picturebook/
 ```
 
 ## 使用方法
@@ -57,16 +67,23 @@ aigc_story_project/
 │  └─ assets/
 │     ├─ style.css
 │     └─ app.js
+├─ src/illustration/         # 作业2角色一致性提示词生成
+├─ src/picturebook/          # 作业2网页绘本源码
 ├─ dist/                     # 可直接运行和提交演示的静态网站
 ├─ scripts/
-│  └─ build_static.py        # 将src/web同步到dist
+│  ├─ build_static.py        # 构建主页与网页绘本
+│  └─ prepare_illustration_prompts.py
 ├─ tests/
-│  └─ test_homework0.py
+│  ├─ test_homework0.py
+│  ├─ test_story_generator.py
+│  └─ test_homework2.py
 ├─ docs/homework0/
 │  ├─ ai-log.md
 │  ├─ demo-script.md
 │  └─ test-report.md
-├─ outputs/                  # 后续作业生成的故事、图片、音频和视频
+├─ docs/homework1/           # 作业1说明、Prompt对比和AI日志
+├─ docs/homework2/           # 作业2说明、一致性报告和AI日志
+├─ outputs/                  # 故事JSON、配图和提示词成果
 ├─ requirements.txt
 └─ README.md
 ```
@@ -102,10 +119,12 @@ python -m unittest discover -s tests -p "test_*.py" -v
 
 如果教师要求必须体现 Trae 的使用，应当将本仓库导入 Trae，进行本人实际完成的修改和调试，并把真实过程补充进AI协作日志；不要把未发生的操作写进日志。
 
+作业1具体运行和查看方法见 [`docs/homework1/README.md`](docs/homework1/README.md)，作业2见 [`docs/homework2/README.md`](docs/homework2/README.md)。
+
 ## 后续计划
 
-- 作业1：已完成Python代码骨架、三种Prompt和离线校验，待接入真实API完成实验
-- 作业2：根据场景生成配图并排版绘本
+- 作业1：代码、三种Prompt和离线校验已完成；待配置免费云API进行真实对比实验
+- 作业2：角色设定、三幕配图、网页绘本、方案文档与测试已完成
 - 作业3：生成多角色有声书
 - 作业4：通过图片、音频、字幕自动剪辑故事视频
 - 作业5：建立多模态故事素材检索系统

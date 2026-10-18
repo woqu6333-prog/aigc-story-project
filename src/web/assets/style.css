@@ -186,6 +186,27 @@ button {
   letter-spacing: 0.08em;
 }
 
+.course-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.picturebook-link {
+  padding: 8px 13px;
+  border-radius: 999px;
+  color: white;
+  background: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.picturebook-link:hover {
+  background: var(--accent-strong);
+}
+
 .hero-copy {
   max-width: 760px;
   margin: 70px auto 36px;
@@ -853,6 +874,15 @@ footer p {
   }
 
   .course-badge {
+    padding: 6px 9px;
+    font-size: 9px;
+  }
+
+  .course-nav {
+    gap: 5px;
+  }
+
+  .picturebook-link {
     padding: 6px 9px;
     font-size: 9px;
   }

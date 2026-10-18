@@ -25,3 +25,7 @@ Desktop.ini
 # Large generated media will be managed deliberately in later assignments.
 outputs/videos/*.mp4
 outputs/audio/*.wav
+
+# Local browser visual-QA artifacts
+outputs/edge-profile*/
+outputs/screenshots/

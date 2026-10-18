@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="作业2网页绘本：小雨和月光脚印" />
+    <title>小雨和月光脚印｜作业2网页绘本</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#book">跳到绘本</a>
+    <header class="topbar">
+      <a class="back-link" href="../" aria-label="返回星光故事屋">← 星光故事屋</a>
+      <p><span>课程作品</span> 作业2 · AI绘本</p>
+      <button class="print-button" id="printButton" type="button">打印 / 导出 PDF</button>
+    </header>
+
+    <main class="shell" id="book">
+      <section class="book-stage" aria-live="polite">
+        <article class="book-page cover-page is-active" data-page="0" aria-label="封面">
+          <img
+            class="cover-image"
+            src="assets/images/scene-01.png"
+            alt="小雨在月光森林里观察脚印"
+          />
+          <div class="cover-card">
+            <p class="eyebrow">A MOONLIT STORY</p>
+            <h1>小雨和<br />月光脚印</h1>
+            <p>一个关于观察、知识和真正勇气的故事</p>
+            <div class="cover-meta">
+              <span>适读年龄 6–9 岁</span>
+              <span>共 3 个场景</span>
+            </div>
+          </div>
+          <p class="start-hint">点击“下一页”开始阅读</p>
+        </article>
+
+        <article class="book-page story-spread" data-page="1" aria-label="第一幕：奇怪的脚印" hidden>
+          <figure class="scene-figure">
+            <img src="assets/images/scene-01.png" alt="雨后的月光森林里，小雨蹲下观察三趾脚印" />
+            <figcaption>01 · 奇怪的脚印</figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="chapter">第一幕 · 好奇</p>
+            <h2>雨后的发现</h2>
+            <p>
+              雨停以后，小雨提着勇气走进月光森林。泥地上，一串小小的三趾脚印绕过蘑菇，伸向树影深处。
+            </p>
+            <p>
+              喜欢恐龙的她蹲下来仔细观察，没有急着把它们当成怪兽的脚印。
+            </p>
+            <blockquote>“先看清楚，再下结论。”</blockquote>
+          </div>
+        </article>
+
+        <article class="book-page story-spread reverse" data-page="2" aria-label="第二幕：蓝色羽毛" hidden>
+          <figure class="scene-figure">
+            <img src="assets/images/scene-02.png" alt="小雨用恐龙图鉴比对脚印，并发现蓝色羽毛" />
+            <figcaption>02 · 蓝色羽毛</figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="chapter">第二幕 · 思考</p>
+            <h2>知识带来的线索</h2>
+            <p>
+              小雨翻开随身带着的恐龙图鉴，比了比脚印的大小。真正的大恐龙可不会留下这么轻巧的痕迹。
+            </p>
+            <p>
+              就在这时，她发现脚印旁躺着一片蓝色羽毛，心里忽然有了答案。
+            </p>
+            <blockquote>“也许，它们不是怪兽的脚印。”</blockquote>
+          </div>
+        </article>
+
+        <article class="book-page story-spread" data-page="3" aria-label="第三幕：送小鸟回家" hidden>
+          <figure class="scene-figure">
+            <img src="assets/images/scene-03.png" alt="小雨把三只蓝色小鸟送回树上的鸟巢" />
+            <figcaption>03 · 回家的路</figcaption>
+          </figure>
+          <div class="story-copy">
+            <p class="chapter">第三幕 · 温暖</p>
+            <h2>真正的勇敢</h2>
+            <p>
+              她沿着脚印找到三只迷路的蓝色小鸟，又轻轻把它们送回低树枝上的鸟巢。
+            </p>
+            <p>
+              鸟妈妈唱起安心的歌，萤火虫也亮成了一条回家的路。小雨明白，真正的勇敢，是看清以后仍愿意伸出手。
+            </p>
+          </div>
+        </article>
+
+        <article class="book-page ending-page" data-page="4" aria-label="故事寓意" hidden>
+          <div class="moon-mark" aria-hidden="true">☾</div>
+          <p class="eyebrow">THE LITTLE LIGHT</p>
+          <h2>故事里的小星光</h2>
+          <p class="moral">
+            勇气不是贸然向前，<br />而是在认真观察后，<br />依然愿意采取行动、帮助别人。
+          </p>
+          <div class="ending-tags" aria-label="故事关键词">
+            <span>观察</span><span>知识</span><span>勇气</span><span>善意</span>
+          </div>
+          <p class="the-end">— 完 —</p>
+        </article>
+
+        <article class="book-page process-page" data-page="5" aria-label="角色一致性方法与对比" hidden>
+          <div class="process-heading">
+            <div>
+              <p class="eyebrow">BEHIND THE STORY</p>
+              <h2>角色一致性对比</h2>
+            </div>
+            <p>固定设定图 + 每幕重复角色锁定词 + 同一绘画风格</p>
+          </div>
+          <div class="comparison-grid">
+            <figure class="reference-card">
+              <img src="assets/images/xiaoyu-character-sheet.png" alt="小雨角色设定图，包含多视角和表情" />
+              <figcaption><strong>角色设定图</strong><span>身份与服装基准</span></figcaption>
+            </figure>
+            <figure>
+              <img src="assets/images/scene-01.png" alt="场景一角色一致性对比图" />
+              <figcaption><strong>场景 01</strong><span>雨林入口</span></figcaption>
+            </figure>
+            <figure>
+              <img src="assets/images/scene-02.png" alt="场景二角色一致性对比图" />
+              <figcaption><strong>场景 02</strong><span>发现线索</span></figcaption>
+            </figure>
+            <figure>
+              <img src="assets/images/scene-03.png" alt="场景三角色一致性对比图" />
+              <figcaption><strong>场景 03</strong><span>送鸟回家</span></figcaption>
+            </figure>
+          </div>
+          <ul class="consistency-list">
+            <li><span>01</span>黑色短发与两枚月牙发夹</li>
+            <li><span>02</span>黄色雨衣、红雨靴</li>
+            <li><span>03</span>青绿色恐龙挎包</li>
+            <li><span>04</span>年龄、比例和水彩质感</li>
+          </ul>
+        </article>
+      </section>
+
+      <nav class="reader-controls" aria-label="绘本翻页控制">
+        <button id="previousButton" type="button" disabled>← 上一页</button>
+        <div class="progress-wrap">
+          <p id="pageLabel">封面 · 1 / 6</p>
+          <div class="page-dots" id="pageDots" aria-label="选择页面"></div>
+        </div>
+        <button id="nextButton" type="button">下一页 →</button>
+      </nav>
+
+      <aside class="project-note">
+        <strong>作业说明</strong>
+        <p>本绘本使用作业一 JSON 示例作为输入。当前图片由参考图约束生成，后续接入真实故事 API 时可替换 JSON 和场景图。</p>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <span>星光故事屋 · AIGC 应用开发实践</span>
+      <a href="data/story.json">查看结构化故事 JSON</a>
+    </footer>
+  </body>
+</html>
