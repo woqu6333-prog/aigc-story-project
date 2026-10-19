@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="《小雨和月光脚印》多角色同步有声书，AIGC课程作业3。" />
+    <title>小雨和月光脚印｜多角色有声书</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="返回星光故事屋首页">
+        <span class="brand-mark" aria-hidden="true">♫</span>
+        <span>星光故事屋</span>
+      </a>
+      <nav aria-label="课程成果导航">
+        <a href="../">故事生成</a>
+        <a href="../picturebook/">网页绘本</a>
+        <span>作业3 · 有声书</span>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="bookTitle">
+        <div class="hero-art" id="heroArt" aria-hidden="true">
+          <img id="chapterImage" src="../picturebook/assets/images/scene-01.png" alt="" />
+          <div class="art-shade"></div>
+          <div class="sound-rings"><i></i><i></i><i></i></div>
+          <span class="chapter-label" id="chapterLabel">序章</span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">AIGC应用开发实践 · 作业3</p>
+          <h1 id="bookTitle">小雨和月光脚印</h1>
+          <p class="subtitle">四位角色，用声音重返雨后的月光森林</p>
+
+          <div class="facts" aria-label="有声书信息">
+            <span><strong id="durationFact">8:30</strong>总时长</span>
+            <span><strong id="voiceFact">4</strong>种音色</span>
+            <span><strong id="segmentFact">30</strong>段对白</span>
+          </div>
+
+          <div class="player-card">
+            <div class="now-playing">
+              <span class="pulse" aria-hidden="true"></span>
+              <div>
+                <small>正在播放</small>
+                <strong id="nowPlaying">准备进入月光森林</strong>
+              </div>
+              <span class="emotion-chip" id="emotionChip">温柔</span>
+            </div>
+            <audio id="audioPlayer" controls preload="metadata">
+              <source src="assets/audio/audiobook.mp3" type="audio/mpeg" />
+              你的浏览器不支持音频播放。
+            </audio>
+            <p class="player-hint">播放后正文会自动高亮；点击任意一句可从该句开始听。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="voice-panel" aria-labelledby="voiceTitle">
+          <p class="section-tag">VOICE CAST</p>
+          <h2 id="voiceTitle">角色与音色</h2>
+          <p class="panel-intro">每个角色使用独立中文神经网络音色，并根据情绪微调语速、音高和音量。</p>
+          <div class="voice-list">
+            <article class="voice-card narrator">
+              <span class="avatar">旁</span>
+              <div><strong>旁白</strong><small>晓晓 · 温暖沉静</small></div>
+            </article>
+            <article class="voice-card xiaoyu">
+              <span class="avatar">雨</span>
+              <div><strong>小雨</strong><small>晓伊 · 好奇清亮</small></div>
+            </article>
+            <article class="voice-card robin">
+              <span class="avatar">鸟</span>
+              <div><strong>月光知更鸟</strong><small>云希 · 活泼阳光</small></div>
+            </article>
+            <article class="voice-card lanlan">
+              <span class="avatar">蓝</span>
+              <div><strong>蓝蓝</strong><small>云夏 · 稚嫩可爱</small></div>
+            </article>
+          </div>
+          <div class="tech-note">
+            <strong>实现方式</strong>
+            <p>Edge TTS 分角色生成 → FFmpeg 无损流程拼接 → JSON 时间轴驱动网页同步。</p>
+          </div>
+        </aside>
+
+        <section class="transcript-panel" aria-labelledby="transcriptTitle">
+          <div class="transcript-heading">
+            <div>
+              <p class="section-tag">SYNCHRONIZED SCRIPT</p>
+              <h2 id="transcriptTitle">同步故事文本</h2>
+            </div>
+            <button id="followButton" class="follow-button is-active" type="button" aria-pressed="true">
+              自动跟随：开
+            </button>
+          </div>
+          <div class="transcript" id="transcript" aria-live="off">
+            <p class="loading">正在装载故事时间轴……</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>生成音频仅用于课程学习与作品展示。</p>
+      <a href="../picturebook/">返回网页绘本 →</a>
+    </footer>
+  </body>
+</html>

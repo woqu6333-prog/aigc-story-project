@@ -29,3 +29,11 @@ outputs/audio/*.wav
 # Local browser visual-QA artifacts
 outputs/edge-profile*/
 outputs/screenshots/
+
+# 作业3可重新生成的分段缓存与拼接临时文件
+outputs/audio/homework3/parts/
+outputs/audio/homework3/silence/
+outputs/audio/homework3/wav-parts/
+outputs/audio/homework3/wav-silence/
+outputs/audio/homework3/silence-test.mp3
+outputs/audio/homework3/concat-list.txt

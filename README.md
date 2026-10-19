@@ -1,13 +1,14 @@
 # 星光故事屋
 
-《AIGC应用开发实践》课程主线项目。当前版本已完成作业0网页、作业1结构化故事生成器代码，以及作业2角色一致的网页绘本。
+《AIGC应用开发实践》课程主线项目。当前版本已完成作业0网页、作业1结构化故事生成器、作业2角色一致的网页绘本，以及作业3多角色同步有声书。
 
-用户填写主角姓名、年龄、兴趣、场景和主题。网页既可使用零成本离线演示，也可通过本地Python后端安全调用作业1大模型API，并继续查看作业2绘本成果。
+用户填写主角姓名、年龄、兴趣、场景和主题。网页既可使用零成本离线演示，也可通过本地Python后端安全调用作业1大模型API，并继续查看作业2绘本和作业3有声书成果。
 
 ## 在线体验
 
 - 作业0故事网页：<https://woqu6333-prog.github.io/aigc-story-project/>
 - 作业2网页绘本：<https://woqu6333-prog.github.io/aigc-story-project/picturebook/>
+- 作业3同步有声书：<https://woqu6333-prog.github.io/aigc-story-project/audiobook/>
 
 ## 当前功能
 
@@ -25,6 +26,8 @@
 - 作业1支持三种 Prompt 策略、严格 JSON 校验和自动修复
 - 作业2包含角色设定图、三幅一致性场景图和六页交互绘本
 - 绘本支持按钮、方向键翻页以及浏览器打印为 PDF
+- 作业3包含4种角色音色、30段情感台词和8分57秒MP3
+- 有声书支持逐句同步高亮、自动跟随和点击台词跳转
 
 ## 快速运行
 
@@ -52,6 +55,12 @@ http://localhost:8000
 http://localhost:8000/picturebook/
 ```
 
+作业3有声书地址：
+
+```text
+http://localhost:8000/audiobook/
+```
+
 ### 方法三：本地API网站运行（推荐）
 
 先根据 `.env.example` 配置本地 `.env`，再执行：
@@ -71,6 +80,7 @@ http://localhost:8000/picturebook/
 5. 点击“生成结构化故事”。
 6. API模式下可以点击“AI润色”进行第二次文学编辑。
 7. 确认故事后点击“打开网页绘本”，查看作业2成果。
+8. 点击“播放有声书”，查看作业3多角色配音与同步文本。
 
 ## 项目结构
 
@@ -83,9 +93,12 @@ aigc_story_project/
 │     └─ app.js
 ├─ src/illustration/         # 作业2角色一致性提示词生成
 ├─ src/picturebook/          # 作业2网页绘本源码
+├─ src/audiobook/            # 作业3音频生成和时间轴逻辑
+├─ src/audiobook_web/        # 作业3同步有声书网页
 ├─ dist/                     # 可直接运行和提交演示的静态网站
 ├─ scripts/
-│  ├─ build_static.py        # 构建主页与网页绘本
+│  ├─ build_static.py        # 构建主页、网页绘本与有声书
+│  ├─ generate_audiobook.py  # 生成多角色MP3和同步时间轴
 │  ├─ prepare_illustration_prompts.py
 │  └─ run_app.py             # 统一网站与作业1本地API后端
 ├─ tests/
@@ -93,12 +106,14 @@ aigc_story_project/
 │  ├─ test_integrated_app.py
 │  ├─ test_story_generator.py
 │  └─ test_homework2.py
+│  └─ test_homework3.py
 ├─ docs/homework0/
 │  ├─ ai-log.md
 │  ├─ demo-script.md
 │  └─ test-report.md
 ├─ docs/homework1/           # 作业1说明、Prompt对比和AI日志
 ├─ docs/homework2/           # 作业2说明、一致性报告和AI日志
+├─ docs/homework3/           # 作业3说明、音色映射、AI日志和讲稿
 ├─ outputs/                  # 故事JSON、配图和提示词成果
 ├─ requirements.txt
 └─ README.md
@@ -135,14 +150,14 @@ python -m unittest discover -s tests -p "test_*.py" -v
 
 如果教师要求必须体现 Trae 的使用，应当将本仓库导入 Trae，进行本人实际完成的修改和调试，并把真实过程补充进AI协作日志；不要把未发生的操作写进日志。
 
-作业1具体运行和查看方法见 [`docs/homework1/README.md`](docs/homework1/README.md)，作业2见 [`docs/homework2/README.md`](docs/homework2/README.md)。
+作业1具体运行和查看方法见 [`docs/homework1/README.md`](docs/homework1/README.md)，作业2见 [`docs/homework2/README.md`](docs/homework2/README.md)，作业3见 [`docs/homework3/README.md`](docs/homework3/README.md)。
 
 ## 后续计划
 
-- 作业0–2：已整合为“创意输入 → 结构化故事 → 绘本成果”的统一网站
+- 作业0–3：已整合为“创意输入 → 结构化故事 → 绘本成果 → 多角色有声书”的统一网站
 - 作业1：三种Prompt、结构校验、自动修复和可选二次润色已完成；待配置免费云API产生真实实验数据
 - 作业2：角色设定、三幕配图、网页绘本、方案文档与测试已完成，后续接入动态配图服务
-- 作业3：生成多角色有声书
+- 作业3：4角色配音、情感参数、8分57秒MP3和同步高亮网页已完成
 - 作业4：通过图片、音频、字幕自动剪辑故事视频
 - 作业5：建立多模态故事素材检索系统
 - 作业6：使用 Agent 框架编排完整创作流程
