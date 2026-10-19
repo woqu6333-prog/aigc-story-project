@@ -34,23 +34,23 @@
             <span>星光故事屋</span>
           </a>
           <nav class="course-nav" aria-label="课程作业导航">
-            <span class="course-badge">AIGC课程 · 作业0</span>
-            <a class="picturebook-link" href="picturebook/">查看作业2绘本 →</a>
+            <span class="course-badge">AIGC课程 · 作业0–2联合作品</span>
+            <a class="picturebook-link" href="picturebook/">绘本成果 →</a>
           </nav>
         </div>
 
         <div class="hero-copy" id="top">
-          <p class="eyebrow">今晚的主角，由你来决定</p>
-          <h1>把一个小小的名字，<br /><span>变成一场大大的冒险。</span></h1>
+          <p class="eyebrow">从创意输入到完整绘本</p>
+          <h1>把一个小小的名字，<br /><span>变成一本会发光的故事。</span></h1>
           <p class="hero-description">
-            填写孩子的信息，挑选一个故事主题。只需几秒钟，就能收获一篇专属于TA的睡前故事。
+            填写创作卡片，由作业1结构化故事引擎生成内容；确认故事后，可以继续查看作业2角色一致的网页绘本。
           </p>
         </div>
 
         <ol class="steps" aria-label="故事生成步骤">
           <li><span>1</span>填写灵感</li>
-          <li><span>2</span>选择主题</li>
-          <li><span>3</span>收获故事</li>
+          <li><span>2</span>生成故事</li>
+          <li><span>3</span>制作绘本</li>
         </ol>
       </header>
 
@@ -116,6 +116,15 @@
               </div>
             </div>
 
+            <div class="form-field">
+              <label for="storySetting">故事发生在哪里？</label>
+              <select id="storySetting" name="storySetting">
+                <option value="月光森林">月光森林</option>
+                <option value="云海灯塔岛">云海灯塔岛</option>
+                <option value="会唱歌的小河谷">会唱歌的小河谷</option>
+              </select>
+            </div>
+
             <fieldset class="theme-fieldset">
               <legend>选择故事主题</legend>
               <div class="theme-options">
@@ -146,11 +155,19 @@
               </div>
             </fieldset>
 
-            <button class="primary-button" type="submit">
-              <span>生成我的故事</span>
+            <div class="generation-status" id="generationStatus" data-state="checking">
+              <span class="status-dot" aria-hidden="true"></span>
+              <div>
+                <strong id="generationMode">正在检查生成模式</strong>
+                <small id="generationModeDetail">请稍候……</small>
+              </div>
+            </div>
+
+            <button class="primary-button" id="generateButton" type="submit">
+              <span id="generateButtonLabel">生成结构化故事</span>
               <span class="button-arrow" aria-hidden="true">→</span>
             </button>
-            <p class="privacy-note">所有信息只保存在当前浏览器中，不会上传到网络。</p>
+            <p class="privacy-note">API密钥只由本地Python后端读取，永远不会写入网页或GitHub。</p>
           </form>
         </aside>
 
@@ -175,6 +192,9 @@
             <div class="story-toolbar">
               <span class="story-theme-badge" id="storyThemeLabel">勇气冒险</span>
               <div class="toolbar-actions">
+                <button class="icon-button" id="polishButton" type="button" title="使用API进行第二遍文学润色" disabled>
+                  <span aria-hidden="true">✦</span><span>AI润色</span>
+                </button>
                 <button class="icon-button" id="regenerateButton" type="button" title="重新生成故事">
                   <span aria-hidden="true">↻</span><span>换一个</span>
                 </button>
@@ -191,6 +211,7 @@
               <p class="story-overline">A STORY JUST FOR YOU</p>
               <h2 id="storyTitle"></h2>
               <div class="story-meta" id="storyMeta"></div>
+              <p class="story-source-note" id="storySourceNote"></p>
               <div class="story-body" id="storyBody"></div>
               <div class="moral-box">
                 <span aria-hidden="true">✦</span>
@@ -198,6 +219,14 @@
                   <strong>故事里的小星光</strong>
                   <p id="storyMoral"></p>
                 </div>
+              </div>
+              <div class="picturebook-cta">
+                <div>
+                  <small>下一步 · 作业2</small>
+                  <strong>看看故事如何变成角色一致的绘本</strong>
+                  <p>当前展示已完成的《小雨和月光脚印》课程样例。</p>
+                </div>
+                <a href="picturebook/">打开网页绘本 →</a>
               </div>
             </article>
           </div>

@@ -15,7 +15,7 @@ if str(SRC_DIR) not in sys.path:
 
 from story_generator.json_tools import JSONExtractionError, extract_first_json_object
 from story_generator.models import StoryOutput, StoryRequest
-from story_generator.prompts import PromptStrategy, build_messages
+from story_generator.prompts import PromptStrategy, build_messages, build_polish_messages
 from story_generator.service import StoryGenerationError, StoryGenerator
 
 
@@ -129,6 +129,15 @@ class PromptTests(unittest.TestCase):
         combined = "\n".join(message["content"] for message in messages)
         self.assertIn("因果关系", combined)
         self.assertIn("不能只机械重复兴趣名称", combined)
+        self.assertIn("长短句交替", combined)
+        self.assertIn("通过选择、行动和结果表现成长", combined)
+
+    def test_polish_prompt_preserves_structure_and_improves_style(self) -> None:
+        messages = build_polish_messages(valid_request(), valid_story_payload())
+        combined = "\n".join(message["content"] for message in messages)
+        self.assertIn("不改变故事核心事件", combined)
+        self.assertIn("动作、感官细节或简短自然的对话", combined)
+        self.assertIn("小雨和月光脚印", combined)
 
 
 class ServiceTests(unittest.TestCase):
@@ -156,6 +165,15 @@ class ServiceTests(unittest.TestCase):
             StoryGenerator(client, max_retries=1).generate(
                 valid_request(), PromptStrategy.FEW_SHOT
             )
+
+    def test_polish_reuses_validation_pipeline(self) -> None:
+        polished_payload = valid_story_payload()
+        polished_payload["scenes"][0]["text"] += "月光在水洼里轻轻晃动。"  # type: ignore[index]
+        client = FakeClient([json.dumps(polished_payload, ensure_ascii=False)])
+        original = StoryOutput.model_validate(valid_story_payload())
+        result = StoryGenerator(client, max_retries=1).polish(valid_request(), original)
+        self.assertEqual(result.attempts, 1)
+        self.assertIn("月光", result.story.scenes[0].text)
 
 
 if __name__ == "__main__":

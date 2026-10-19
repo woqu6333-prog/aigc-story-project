@@ -1,116 +1,18 @@
 "use strict";
 
-const STORAGE_KEY = "starlight-story-house-v1";
+const STORAGE_KEY = "starlight-story-house-v2";
 
 const themeCatalog = {
-  courage: {
-    label: "勇气冒险",
-    create({ name, age, interest }) {
-      const places = ["会移动的月光森林", "漂浮在云海上的灯塔岛", "每到夜里就会发光的山谷"];
-      const companions = ["一只尾巴像蒲公英的小狐狸", "一只戴圆眼镜的蓝知更鸟", "一个装着微小星光的纸灯笼"];
-      const obstacles = ["一座只回应真心话的石门", "一条被浓雾藏起来的小路", "一阵把声音都吹走的怪风"];
-      const place = pick(places);
-      const companion = pick(companions);
-      const obstacle = pick(obstacles);
-
-      return {
-        title: `${name}和不肯熄灭的星光`,
-        sections: [
-          {
-            heading: "一封月光来信",
-            text: `${age}岁的${name}最喜欢${interest}。一天傍晚，窗台上落下一封银色的信，信上写着：“${place}失去了一颗重要的星星，需要一位愿意出发的小小旅人。”${name}心里有一点紧张，却还是把最喜欢的${interest}图案徽章别在胸前，轻轻推开了那扇月光做成的门。`
-          },
-          {
-            heading: "看不清的前路",
-            text: `门后站着${companion}。它告诉${name}，只有穿过${obstacle}，才能把星星送回夜空。走到半路，四周突然变得安静又黑暗。${name}很想回家，但想起还有许多孩子在等星光照亮窗边，便握紧徽章说：“害怕也没关系，我可以一步一步来。”`
-          },
-          {
-            heading: "勇气发出声音",
-            text: `${name}没有假装自己什么都不怕，而是把担心说给同伴听。他们一起观察风的方向，又用关于${interest}的知识想出办法。每向前一步，胸前的徽章就亮一点。最后，${obstacle}不再可怕，它变成了一条闪着金光的路，把他们送到了山顶。`
-          },
-          {
-            heading: "回到窗边的星星",
-            text: `${name}把星星轻轻放回天空。整个${place}重新亮了起来，连远处的屋顶也铺上温柔的银光。回家以后，窗台上多了一颗小小的亮点。每当${name}遇到困难，它就像在说：“勇敢不是从不害怕，而是害怕的时候，仍愿意试一试。”`
-          }
-        ],
-        moral: "真正的勇气不是没有害怕，而是承认害怕以后，仍然愿意认真地迈出下一步。"
-      };
-    }
-  },
-  friendship: {
-    label: "友谊成长",
-    create({ name, age, interest }) {
-      const friends = ["慢吞吞的小刺猬团团", "说话像唱歌的小鹿米米", "总把帽子戴反的小熊布丁"];
-      const events = ["森林分享节", "月亮湖野餐会", "会发光的风筝比赛"];
-      const problems = ["装饰会场的彩带被风吹散了", "大家准备的点心不小心打翻了", "比赛用的风筝线全缠在了一起"];
-      const friend = pick(friends);
-      const event = pick(events);
-      const problem = pick(problems);
-
-      return {
-        title: `${name}和装满笑声的口袋`,
-        sections: [
-          {
-            heading: "特别的新同桌",
-            text: `${age}岁的${name}喜欢${interest}，也喜欢把新发现画在小卡片上。准备${event}的那天，老师安排${name}和${friend}一起工作。可是他们一个做事快，一个想得慢，刚开始总是碰不到同一个节拍。两个人都觉得，也许独自完成会更容易。`
-          },
-          {
-            heading: "一场小小的意外",
-            text: `就在活动快要开始时，${problem}。大家急得团团转。${name}本想马上按照自己的办法解决，却发现${friend}一直安静地观察。${name}停下来问：“你是不是想到了什么？”朋友点点头，说出了一个谁也没有注意到的好主意。`
-          },
-          {
-            heading: "两种办法拼在一起",
-            text: `${name}把自己熟悉的${interest}用进方案里，${friend}则负责最需要耐心的部分。他们不再抢着证明谁的办法更好，而是认真听完对方的话。一个人的点子像一块拼图，两个人的点子合起来，竟变成了一幅完整又漂亮的图画。`
-          },
-          {
-            heading: "装满笑声的口袋",
-            text: `${event}顺利开始了。回家的路上，${friend}送给${name}一只纸做的小口袋，说里面装着今天的笑声。${name}也送出一张画着两颗星星的卡片。从那以后，他们仍然有不同的想法，却学会了先倾听、再商量，因为好朋友不必一模一样。`
-          }
-        ],
-        moral: "友谊不是要求彼此完全相同，而是愿意倾听、分享，并让不同的优点一起发光。"
-      };
-    }
-  },
-  nature: {
-    label: "自然守护",
-    create({ name, age, interest }) {
-      const places = ["会唱歌的小河", "藏着彩色种子的森林", "海风总带着咸味的贝壳湾"];
-      const messengers = ["一片会说悄悄话的绿叶", "一只脚上沾着露珠的蜗牛", "一颗从泥土里探出头的小种子"];
-      const troubles = ["水面漂来了许多包装纸", "小动物们找不到干净的饮水", "花草因为垃圾挡住阳光而低下了头"];
-      const place = pick(places);
-      const messenger = pick(messengers);
-      const trouble = pick(troubles);
-
-      return {
-        title: `${name}和绿色回声计划`,
-        sections: [
-          {
-            heading: "来自大自然的邀请",
-            text: `${age}岁的${name}正在研究最喜欢的${interest}，忽然听见窗外有人轻轻敲玻璃。原来是${messenger}，它从${place}赶来求助。那里过去清亮又热闹，如今却遇到了麻烦：${trouble}。${name}背上水壶和布袋，决定亲自去看一看。`
-          },
-          {
-            heading: "不是魔法的问题",
-            text: `到了${place}，${name}发现没有哪个魔法能让所有垃圾瞬间消失。于是，${name}先把能回收的东西分类，再请小动物们记录垃圾来自哪里。关于${interest}的经验还带来了新点子：把旧材料改造成醒目的提示牌，让经过的人都能看懂。`
-          },
-          {
-            heading: "一件小事带来的改变",
-            text: `一开始，只有${name}和${messenger}在行动。后来，松鼠送来了旧纸箱，小鸟负责把消息传远，路过的人也弯腰捡起脚边的瓶盖。大家约定少用一次性物品，并把垃圾带回正确的地方。一天又一天，清洁的范围越来越大。`
-          },
-          {
-            heading: "绿色的回声",
-            text: `不久，${place}重新有了清澈的颜色，花草抬起头，小动物也回到了熟悉的家。风吹过树梢时，叶子沙沙作响，像在重复${name}说过的话：“保护自然不一定要做惊天动地的大事，每一个认真完成的小行动，都会被世界听见。”`
-          }
-        ],
-        moral: "爱护环境从身边的小事开始；一个人的行动很小，却能邀请更多人一起改变。"
-      };
-    }
-  }
+  courage: { label: "勇气冒险" },
+  friendship: { label: "友谊成长" },
+  nature: { label: "自然守护" }
 };
 
 const form = document.querySelector("#storyForm");
 const nameInput = document.querySelector("#heroName");
 const ageInput = document.querySelector("#heroAge");
 const interestInput = document.querySelector("#heroInterest");
+const settingInput = document.querySelector("#storySetting");
 const emptyState = document.querySelector("#emptyState");
 const storyResult = document.querySelector("#storyResult");
 const storyTitle = document.querySelector("#storyTitle");
@@ -118,13 +20,23 @@ const storyMeta = document.querySelector("#storyMeta");
 const storyBody = document.querySelector("#storyBody");
 const storyMoral = document.querySelector("#storyMoral");
 const storyThemeLabel = document.querySelector("#storyThemeLabel");
+const storySourceNote = document.querySelector("#storySourceNote");
+const generateButton = document.querySelector("#generateButton");
+const generateButtonLabel = document.querySelector("#generateButtonLabel");
+const polishButton = document.querySelector("#polishButton");
 const regenerateButton = document.querySelector("#regenerateButton");
 const copyButton = document.querySelector("#copyButton");
 const downloadButton = document.querySelector("#downloadButton");
+const generationStatus = document.querySelector("#generationStatus");
+const generationMode = document.querySelector("#generationMode");
+const generationModeDetail = document.querySelector("#generationModeDetail");
 const toast = document.querySelector("#toast");
 
 let currentStory = null;
+let apiReady = false;
+let apiModel = "";
 let toastTimer = null;
+let busy = false;
 
 function pick(items) {
   return items[Math.floor(Math.random() * items.length)];
@@ -134,6 +46,19 @@ function selectedTheme() {
   return form.elements.theme.value;
 }
 
+function currentProfile() {
+  return {
+    name: nameInput.value.trim(),
+    age: Number(ageInput.value),
+    interest: interestInput.value.trim(),
+    setting: settingInput.value,
+    theme: selectedTheme(),
+    story_length: "短篇",
+    target_age: Number(ageInput.value),
+    strategy: "role_constraints"
+  };
+}
+
 function setFieldError(input, message) {
   const error = document.querySelector(`#${input.id}Error`);
   input.setAttribute("aria-invalid", message ? "true" : "false");
@@ -141,32 +66,30 @@ function setFieldError(input, message) {
 }
 
 function validateForm() {
-  const name = nameInput.value.trim();
-  const age = Number(ageInput.value);
-  const interest = interestInput.value.trim();
+  const profile = currentProfile();
   let valid = true;
 
   setFieldError(nameInput, "");
   setFieldError(ageInput, "");
   setFieldError(interestInput, "");
 
-  if (!name) {
+  if (!profile.name) {
     setFieldError(nameInput, "请填写主角名字");
     valid = false;
-  } else if (name.length > 12) {
+  } else if (profile.name.length > 12) {
     setFieldError(nameInput, "名字不能超过12个字符");
     valid = false;
   }
 
-  if (!Number.isInteger(age) || age < 3 || age > 12) {
+  if (!Number.isInteger(profile.age) || profile.age < 3 || profile.age > 12) {
     setFieldError(ageInput, "请输入3–12岁的整数");
     valid = false;
   }
 
-  if (!interest) {
+  if (!profile.interest) {
     setFieldError(interestInput, "请填写一个兴趣");
     valid = false;
-  } else if (interest.length > 20) {
+  } else if (profile.interest.length > 20) {
     setFieldError(interestInput, "兴趣不能超过20个字符");
     valid = false;
   }
@@ -175,7 +98,6 @@ function validateForm() {
     form.querySelector('[aria-invalid="true"]')?.focus();
     showToast("请先补全创作卡片中的信息");
   }
-
   return valid;
 }
 
@@ -185,41 +107,179 @@ function ageReadingLabel(age) {
   return "成长阅读";
 }
 
-function generateStory() {
-  if (!validateForm()) return;
+function createOfflineStory(profile) {
+  const moonClues = ["一枚沾着露水的羽毛", "一串绕过蘑菇的小脚印", "一阵从树洞里传来的轻响"];
+  const helpers = ["戴圆眼镜的蓝知更鸟", "抱着松果的小刺猬", "尾巴像蒲公英的小狐狸"];
+  const clue = pick(moonClues);
+  const helper = pick(helpers);
 
-  const profile = {
-    name: nameInput.value.trim(),
-    age: Number(ageInput.value),
-    interest: interestInput.value.trim(),
-    theme: selectedTheme()
+  const stories = {
+    courage: {
+      title: `${profile.name}和藏在月光里的线索`,
+      sections: [
+        {
+          heading: "森林寄来的邀请",
+          text: `雨停后，${profile.setting}亮起一层银光。${profile.age}岁的${profile.name}在小路边发现了${clue}。${profile.name}虽然有点紧张，却没有急着转身，而是想起自己研究${profile.interest}时最常做的事：先观察，再猜答案。`
+        },
+        {
+          heading: "让知识照亮小路",
+          text: `${helper}正为找不到家而着急。${profile.name}蹲下来比对痕迹，又把关于${profile.interest}的知识变成一个小办法。零散的线索慢慢连在一起，原本黑漆漆的岔路，也不再像刚才那样吓人了。`
+        },
+        {
+          heading: "害怕也可以向前",
+          text: `他们沿着线索找到了正确方向。月光落在回家的路上，${profile.name}终于明白：勇敢不是假装什么都不怕，而是愿意看清困难、想出办法，再认真迈出下一步。`
+        }
+      ],
+      moral: "真正的勇气，是在认真观察和思考之后，依然愿意行动。"
+    },
+    friendship: {
+      title: `${profile.name}和两种不一样的好办法`,
+      sections: [
+        {
+          heading: "不合拍的新伙伴",
+          text: `${profile.age}岁的${profile.name}来到${profile.setting}准备庆典，并和${helper}分到一组。${profile.name}喜欢用${profile.interest}寻找灵感，伙伴却总要安静地想很久。两个人第一次合作时，谁也跟不上谁的节奏。`
+        },
+        {
+          heading: "先听完对方的话",
+          text: `一阵风吹乱了大家的准备。${profile.name}正想独自解决，忽然注意到伙伴一直盯着${clue}。这一次，${profile.name}没有抢着开口，而是先问：“你发现了什么？”一个被忽略的办法，就这样出现了。`
+        },
+        {
+          heading: "拼在一起的答案",
+          text: `${profile.name}把${profile.interest}带来的点子和伙伴的发现合在一起，终于完成了任务。他们并没有变得一模一样，却学会了在不同的想法之间，为彼此留出认真倾听的位置。`
+        }
+      ],
+      moral: "真正的合作不是想法相同，而是愿意倾听并让不同的优点一起发光。"
+    },
+    nature: {
+      title: `${profile.name}和会回答的绿色回声`,
+      sections: [
+        {
+          heading: "不再唱歌的小路",
+          text: `${profile.name}走进${profile.setting}时，发现风里少了往日的声音。${clue}躺在被包装纸挡住的草丛旁，${helper}小声说，最近连回家的路都变得乱糟糟了。`
+        },
+        {
+          heading: "从一件小事开始",
+          text: `${profile.name}没有等待魔法，而是用研究${profile.interest}时学会的分类办法，把能回收和不能回收的东西分开，又画出简单的提示。看见行动真的有效，越来越多的小动物也加入进来。`
+        },
+        {
+          heading: "森林重新有了声音",
+          text: `傍晚，干净的小路重新露出来，风穿过树叶，像在回答每一个弯腰捡起垃圾的人。${profile.name}知道，一次行动也许很小，却能邀请更多人一起照顾共同的家。`
+        }
+      ],
+      moral: "保护自然从身边的小事开始，每一个行动都可能带来新的同行者。"
+    }
   };
 
-  const generated = themeCatalog[profile.theme].create(profile);
-  currentStory = { ...generated, ...profile, createdAt: new Date().toISOString() };
-  renderStory(currentStory);
-  saveState();
+  return {
+    ...stories[profile.theme],
+    ...profile,
+    source: "offline",
+    createdAt: new Date().toISOString(),
+    rawStory: null,
+    generationMeta: null
+  };
+}
+
+function normalizeApiStory(rawStory, profile, source, meta) {
+  return {
+    title: rawStory.title,
+    sections: rawStory.scenes.map((scene) => ({
+      heading: scene.description,
+      text: scene.text,
+      mood: scene.mood,
+      visualPrompt: scene.visual_prompt
+    })),
+    moral: rawStory.moral,
+    characters: rawStory.characters,
+    ...profile,
+    source,
+    createdAt: new Date().toISOString(),
+    rawStory,
+    generationMeta: meta
+  };
+}
+
+async function requestJson(url, payload) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+  const data = await response.json().catch(() => ({ message: "服务返回了无法解析的内容" }));
+  if (!response.ok || !data.ok) throw new Error(data.message || `请求失败：${response.status}`);
+  return data;
+}
+
+async function generateStory() {
+  if (busy || !validateForm()) return;
+  const profile = currentProfile();
+  setBusy(true, apiReady ? "AI正在创作并校验……" : "正在生成离线示例……");
+
+  try {
+    if (apiReady) {
+      const data = await requestJson("api/story", profile);
+      currentStory = normalizeApiStory(data.story, profile, "api", data.meta);
+      showToast("AI故事已生成，并通过结构校验");
+    } else {
+      currentStory = createOfflineStory(profile);
+      showToast("已生成离线演示故事");
+    }
+  } catch (error) {
+    currentStory = createOfflineStory(profile);
+    showToast(`API暂时不可用，已切换离线演示：${error.message}`);
+  } finally {
+    renderStory(currentStory);
+    saveState();
+    setBusy(false);
+  }
+}
+
+async function polishStory() {
+  if (busy || !apiReady || !currentStory?.rawStory) return;
+  setBusy(true, "儿童文学编辑正在二次润色……");
+  try {
+    const profile = currentProfile();
+    const data = await requestJson("api/polish", { ...profile, story: currentStory.rawStory });
+    currentStory = normalizeApiStory(data.story, profile, "api-polished", data.meta);
+    renderStory(currentStory);
+    saveState();
+    showToast("润色完成，故事结构已再次校验");
+  } catch (error) {
+    showToast(`润色失败，已保留原故事：${error.message}`);
+  } finally {
+    setBusy(false);
+  }
+}
+
+function setBusy(nextBusy, label = "") {
+  busy = nextBusy;
+  generateButton.disabled = nextBusy;
+  regenerateButton.disabled = nextBusy;
+  polishButton.disabled = nextBusy || !apiReady || !currentStory?.rawStory;
+  generateButtonLabel.textContent = nextBusy ? label : "生成结构化故事";
 }
 
 function renderStory(story) {
   document.documentElement.dataset.theme = story.theme;
   storyTitle.textContent = story.title;
-  storyThemeLabel.textContent = themeCatalog[story.theme].label;
+  storyThemeLabel.textContent = `${themeCatalog[story.theme].label} · ${sourceLabel(story.source)}`;
   storyMoral.textContent = story.moral;
 
   const metaItems = [
     `主角：${story.name}`,
     `${story.age}岁`,
     `兴趣：${story.interest}`,
+    `场景：${story.setting}`,
     ageReadingLabel(story.age)
   ];
   storyMeta.replaceChildren(...metaItems.map(createMetaChip));
+  storySourceNote.textContent = sourceDescription(story);
 
-  const sections = story.sections.map((section) => {
+  const sections = story.sections.map((section, index) => {
     const wrapper = document.createElement("section");
     const heading = document.createElement("h3");
     const paragraph = document.createElement("p");
-    heading.textContent = section.heading;
+    heading.textContent = `${String(index + 1).padStart(2, "0")} · ${section.heading}`;
     paragraph.textContent = section.text;
     wrapper.append(heading, paragraph);
     return wrapper;
@@ -228,7 +288,26 @@ function renderStory(story) {
 
   emptyState.hidden = true;
   storyResult.hidden = false;
+  polishButton.disabled = !apiReady || !story.rawStory;
   storyResult.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function sourceLabel(source) {
+  if (source === "api-polished") return "AI润色版";
+  if (source === "api") return "真实API";
+  return "离线演示";
+}
+
+function sourceDescription(story) {
+  if (story.source === "offline") {
+    return "当前显示离线演示模板，并非大模型实时生成。请通过 scripts/run_app.py 启动网站并配置 .env，即可使用真实API。";
+  }
+  const meta = story.generationMeta || {};
+  const time = Number.isFinite(meta.elapsed_seconds) ? `，耗时 ${meta.elapsed_seconds} 秒` : "";
+  if (story.source === "api-polished") {
+    return `真实API二次润色结果${time}；润色后已重新通过JSON结构、场景编号和兴趣关联校验。`;
+  }
+  return `真实API生成结果，Prompt策略：${meta.strategy || "role_constraints"}${time}；已通过严格JSON校验。`;
 }
 
 function createMetaChip(text) {
@@ -239,16 +318,16 @@ function createMetaChip(text) {
 
 function storyAsPlainText() {
   if (!currentStory) return "";
-
   const paragraphs = currentStory.sections
     .map((section) => `${section.heading}\n${section.text}`)
     .join("\n\n");
-
   return [
     currentStory.title,
     `主题：${themeCatalog[currentStory.theme].label}`,
     `主角：${currentStory.name}（${currentStory.age}岁）`,
     `兴趣：${currentStory.interest}`,
+    `场景：${currentStory.setting}`,
+    `来源：${sourceLabel(currentStory.source)}`,
     "",
     paragraphs,
     "",
@@ -261,7 +340,6 @@ function storyAsPlainText() {
 async function copyStory() {
   if (!currentStory) return;
   const text = storyAsPlainText();
-
   try {
     await navigator.clipboard.writeText(text);
   } catch {
@@ -274,30 +352,67 @@ async function copyStory() {
     document.execCommand("copy");
     temporary.remove();
   }
-
   showToast("故事已经复制到剪贴板");
 }
 
 function downloadStory() {
   if (!currentStory) return;
-  const blob = new Blob([storyAsPlainText()], { type: "text/plain;charset=utf-8" });
+  const content = currentStory.rawStory
+    ? JSON.stringify(currentStory.rawStory, null, 2)
+    : storyAsPlainText();
+  const extension = currentStory.rawStory ? "json" : "txt";
+  const mime = currentStory.rawStory ? "application/json" : "text/plain";
+  const blob = new Blob([content], { type: `${mime};charset=utf-8` });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   const safeTitle = currentStory.title.replace(/[\\/:*?"<>|]/g, "-");
   link.href = url;
-  link.download = `${safeTitle}.txt`;
+  link.download = `${safeTitle}.${extension}`;
   document.body.appendChild(link);
   link.click();
   link.remove();
   URL.revokeObjectURL(url);
-  showToast("故事文本已经下载");
+  showToast(`故事${extension.toUpperCase()}已经下载`);
 }
 
 function showToast(message) {
   window.clearTimeout(toastTimer);
   toast.textContent = message;
   toast.classList.add("is-visible");
-  toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2200);
+  toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 3200);
+}
+
+function setGenerationMode(state, title, detail) {
+  generationStatus.dataset.state = state;
+  generationMode.textContent = title;
+  generationModeDetail.textContent = detail;
+}
+
+async function checkApiStatus() {
+  if (window.location.protocol === "file:") {
+    setGenerationMode("offline", "离线演示模式", "当前直接打开HTML；启动本地Python服务后可调用真实API");
+    return;
+  }
+
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 2500);
+  try {
+    const response = await fetch("api/health", { cache: "no-store", signal: controller.signal });
+    const data = await response.json();
+    apiReady = Boolean(response.ok && data.api_configured);
+    apiModel = data.model || "";
+    if (apiReady) {
+      setGenerationMode("api", "真实API模式", `已连接 ${apiModel}，支持结构化生成与二次润色`);
+    } else {
+      setGenerationMode("offline", "离线演示模式", "本地服务已启动，但.env尚未配置API");
+    }
+  } catch {
+    apiReady = false;
+    setGenerationMode("offline", "离线演示模式", "当前为静态网页，使用内置示例且不产生API费用");
+  } finally {
+    window.clearTimeout(timer);
+    polishButton.disabled = !apiReady || !currentStory?.rawStory;
+  }
 }
 
 function saveState() {
@@ -306,15 +421,15 @@ function saveState() {
       name: nameInput.value.trim(),
       age: ageInput.value,
       interest: interestInput.value.trim(),
+      setting: settingInput.value,
       theme: selectedTheme()
     },
     story: currentStory
   };
-
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch {
-    // 部分隐私浏览器可能禁用本地存储，不影响页面核心功能。
+    // 隐私模式可能禁用本地存储，不影响生成流程。
   }
 }
 
@@ -322,15 +437,13 @@ function restoreState() {
   try {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (!state?.form) return;
-
     nameInput.value = state.form.name ?? "";
     ageInput.value = state.form.age ?? "";
     interestInput.value = state.form.interest ?? "";
-
+    settingInput.value = state.form.setting || "月光森林";
     const themeInput = form.querySelector(`input[name="theme"][value="${state.form.theme}"]`);
     if (themeInput) themeInput.checked = true;
     document.documentElement.dataset.theme = state.form.theme || "courage";
-
     if (state.story?.title && Array.isArray(state.story.sections)) {
       currentStory = state.story;
       renderStory(currentStory);
@@ -346,20 +459,18 @@ form.addEventListener("submit", (event) => {
 });
 
 form.addEventListener("input", (event) => {
-  if (event.target.matches("input:not([type='radio'])")) {
-    setFieldError(event.target, "");
-  }
+  if (event.target.matches("input:not([type='radio'])")) setFieldError(event.target, "");
 });
 
 form.addEventListener("change", (event) => {
-  if (event.target.name === "theme") {
-    document.documentElement.dataset.theme = event.target.value;
-    saveState();
-  }
+  if (event.target.name === "theme") document.documentElement.dataset.theme = event.target.value;
+  saveState();
 });
 
 regenerateButton.addEventListener("click", generateStory);
+polishButton.addEventListener("click", polishStory);
 copyButton.addEventListener("click", copyStory);
 downloadButton.addEventListener("click", downloadStory);
 
 restoreState();
+checkApiStatus();

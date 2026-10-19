@@ -49,6 +49,18 @@ python scripts\generate_story.py `
 
 删除上面命令末尾的 `--dry-run` 即可调用真实API。结果默认保存到 `outputs/stories/`。
 
+## 在统一网站里生成和润色
+
+作业0网页现已接入作业1的Python后端。配置 `.env` 后执行：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_app.py
+```
+
+然后打开 `http://127.0.0.1:8000`。网页会先调用 `/api/story` 生成并校验JSON；生成成功后可点击“AI润色”，由 `/api/polish` 进行第二次文学编辑，并再次执行相同的结构与内容校验。
+
+直接双击 `dist/index.html` 或使用普通静态服务器时，页面只运行离线演示，不会也不能读取API密钥。
+
 ## 运行三种Prompt对比
 
 ```powershell
@@ -70,3 +82,4 @@ python scripts\compare_prompts.py `
 - `.env` 不会提交到GitHub。
 - 截图、日志和演示视频中不得出现密钥。
 - 如怀疑密钥泄露，应立即在服务商后台撤销并重新创建。
+- 前端JavaScript中不包含密钥；本地服务默认只监听 `127.0.0.1`。

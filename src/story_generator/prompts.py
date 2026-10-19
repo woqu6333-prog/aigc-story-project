@@ -160,7 +160,43 @@ def _role_constraints(request: StoryRequest) -> list[dict[str, str]]:
                 "6. visual_prompt必须复述角色稳定外貌、环境、动作、画风和构图，不能使用代词指代主角。\n"
                 "7. 避免暴力、恐怖、歧视、危险模仿和成人化内容。\n"
                 "8. 寓意必须从故事情节自然得出，避免空洞说教。\n"
-                "9. 严格按照下方结构输出JSON，不要Markdown代码块、注释或额外文字。\n\n"
+                "9. 正文要有可感知的动作、环境细节和自然对话，长短句交替；避免连续使用“然后、于是、最后”串联事件。\n"
+                "10. 不要把人物设定逐项复述成说明书，不要在每个场景重复讲道理；通过选择、行动和结果表现成长。\n"
+                "11. 每个场景都要推进情节：承接上一幕留下的线索，并为下一幕提供新的原因或目标。\n"
+                "12. 严格按照下方结构输出JSON，不要Markdown代码块、注释或额外文字。\n\n"
+                f"输出JSON结构：\n{SCHEMA_DESCRIPTION}"
+            ),
+        },
+    ]
+
+
+def build_polish_messages(
+    request: StoryRequest, story: dict[str, Any]
+) -> list[dict[str, str]]:
+    """创建第二遍文学润色消息，保持结构和剧情事实不变。"""
+
+    return [
+        {
+            "role": "system",
+            "content": (
+                "你是一名严谨的儿童文学编辑。请在不改变故事核心事件、人物关系、"
+                "场景数量和JSON结构的前提下，让文字更自然、更有画面感。只输出合法JSON。"
+            ),
+        },
+        {
+            "role": "user",
+            "content": (
+                f"读者与创作要求：\n{request_as_text(request)}\n\n"
+                "润色规则：\n"
+                "1. 保留title、characters、scenes、moral字段和所有scene_id。\n"
+                "2. 保留原故事的线索、解决办法和结局，不添加突然出现的关键能力或道具。\n"
+                "3. 把抽象说明改成动作、感官细节或简短自然的对话。\n"
+                "4. 删除机械重复、口号式说教和过多的连接词。\n"
+                "5. 主角兴趣仍必须真正帮助解决问题。\n"
+                "6. visual_prompt同步反映润色后的场景，但保持人物外貌一致。\n"
+                "7. 字数仍符合原定篇幅和目标年龄。\n"
+                "8. 只输出完整合法JSON，不要解释修改过程。\n\n"
+                f"待润色故事：\n{json.dumps(story, ensure_ascii=False)}\n\n"
                 f"输出JSON结构：\n{SCHEMA_DESCRIPTION}"
             ),
         },

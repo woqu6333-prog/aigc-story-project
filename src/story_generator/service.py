@@ -10,7 +10,12 @@ from pydantic import ValidationError
 from .client import ChatClient
 from .json_tools import JSONExtractionError, extract_first_json_object
 from .models import StoryOutput, StoryRequest
-from .prompts import PromptStrategy, build_messages, build_repair_messages
+from .prompts import (
+    PromptStrategy,
+    build_messages,
+    build_polish_messages,
+    build_repair_messages,
+)
 
 
 class StoryGenerationError(RuntimeError):
@@ -36,8 +41,28 @@ class StoryGenerator:
     def generate(
         self, request: StoryRequest, strategy: PromptStrategy
     ) -> GenerationResult:
+        return self._generate_from_messages(
+            request=request,
+            strategy=strategy,
+            base_messages=build_messages(strategy, request),
+        )
+
+    def polish(self, request: StoryRequest, story: StoryOutput) -> GenerationResult:
+        """对已校验故事进行第二遍文学润色，并再次执行全部结构校验。"""
+
+        return self._generate_from_messages(
+            request=request,
+            strategy=PromptStrategy.ROLE_CONSTRAINTS,
+            base_messages=build_polish_messages(request, story.model_dump()),
+        )
+
+    def _generate_from_messages(
+        self,
+        request: StoryRequest,
+        strategy: PromptStrategy,
+        base_messages: list[dict[str, str]],
+    ) -> GenerationResult:
         started_at = perf_counter()
-        base_messages = build_messages(strategy, request)
         active_messages = base_messages
         raw_response = ""
         last_error = ""
