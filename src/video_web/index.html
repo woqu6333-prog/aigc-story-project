@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="《小雨和月光脚印》故事精华短视频，AIGC课程作业4。" />
+    <title>小雨和月光脚印｜故事短视频</title>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../"><span aria-hidden="true">▶</span>星光故事屋</a>
+      <nav aria-label="课程成果导航">
+        <a href="../">故事生成</a>
+        <a href="../picturebook/">网页绘本</a>
+        <a href="../audiobook/">有声书</a>
+        <strong>作业4 · 短视频</strong>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">AIGC应用开发实践 · 作业4</p>
+          <h1>让绘本、声音与字幕<br /><span>在同一条时间线上相遇。</span></h1>
+          <p>复用前3次作业成果，由Python与FFmpeg自动完成画面推拉、配音截取、原创背景音乐、字幕烧录和MP4输出。</p>
+          <div class="facts">
+            <span><strong>2:18</strong>视频时长</span>
+            <span><strong>1280×720</strong>高清画面</span>
+            <span><strong>24fps</strong>流畅输出</span>
+            <span><strong>41</strong>字幕片段</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="player-section" aria-labelledby="videoTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FINAL VIDEO</p>
+            <h2 id="videoTitle">《小雨和月光脚印》故事精华</h2>
+          </div>
+          <a class="download" href="assets/video/xiaoyu-story-video.mp4" download>下载MP4</a>
+        </div>
+        <div class="video-frame">
+          <video controls preload="metadata" poster="assets/thumbnail.jpg">
+            <source src="assets/video/xiaoyu-story-video.mp4" type="video/mp4" />
+            你的浏览器不支持视频播放。
+          </video>
+        </div>
+        <p class="tip">建议打开声音并使用全屏观看。字幕已经烧录进画面，离线播放也不会丢失。</p>
+      </section>
+
+      <section class="workflow" aria-labelledby="workflowTitle">
+        <div class="workflow-heading">
+          <p class="eyebrow">AUTOMATED WORKFLOW</p>
+          <h2 id="workflowTitle">自动剪辑流程</h2>
+          <p>选择课程允许的方案B，重点展示多模态素材如何在同一时间轴上自动对齐。</p>
+        </div>
+        <ol>
+          <li><span>01</span><strong>选取故事精华</strong><p>从作业3时间轴自动截取7段关键配音。</p></li>
+          <li><span>02</span><strong>生成动态画面</strong><p>对作业2绘本图执行缓慢推拉和裁切。</p></li>
+          <li><span>03</span><strong>同步字幕</strong><p>按台词字数分配时间，生成41个字幕图层。</p></li>
+          <li><span>04</span><strong>混合声音</strong><p>配音与原创轻音乐混合，加入淡入淡出。</p></li>
+          <li><span>05</span><strong>输出MP4</strong><p>显卡编码为H.264与AAC，适合网页和答辩。</p></li>
+        </ol>
+      </section>
+
+      <section class="reuse">
+        <div>
+          <small>作业2</small>
+          <strong>3幅角色一致绘本图</strong>
+        </div>
+        <span>＋</span>
+        <div>
+          <small>作业3</small>
+          <strong>多角色配音与JSON时间轴</strong>
+        </div>
+        <span>＝</span>
+        <div class="result">
+          <small>作业4</small>
+          <strong>可播放的故事短视频</strong>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>生成素材仅用于课程学习与作品展示。</p>
+      <a href="../audiobook/">返回多角色有声书 →</a>
+    </footer>
+  </body>
+</html>

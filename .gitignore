@@ -37,3 +37,7 @@ outputs/audio/homework3/wav-parts/
 outputs/audio/homework3/wav-silence/
 outputs/audio/homework3/silence-test.mp3
 outputs/audio/homework3/concat-list.txt
+
+# 作业4可重新生成的中间视频、字幕图层和无损音乐
+outputs/video/homework4/temp/
+outputs/video/homework4/background-music.wav

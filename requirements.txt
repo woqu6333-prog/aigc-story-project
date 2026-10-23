@@ -7,3 +7,6 @@ python-dotenv>=1.0,<2.0
 edge-tts>=7.3,<8.0
 mutagen>=1.47,<2.0
 lameenc>=1.9,<2.0
+
+# 作业4：生成中文字幕图层与视频封面
+Pillow>=11,<13

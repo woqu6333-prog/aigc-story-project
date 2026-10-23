@@ -212,6 +212,10 @@ button {
   background: var(--accent-dark);
 }
 
+.video-link {
+  background: var(--secondary);
+}
+
 .hero-copy {
   max-width: 760px;
   margin: 70px auto 36px;
@@ -950,6 +954,15 @@ button {
 
 .audiobook-cta a {
   background: var(--secondary);
+}
+
+.video-cta {
+  border-color: color-mix(in srgb, var(--accent) 34%, transparent);
+  background: linear-gradient(135deg, #fff, var(--accent-soft));
+}
+
+.video-cta a {
+  background: var(--accent-dark);
 }
 
 footer {

@@ -54,6 +54,7 @@ class IntegratedStoryAppTests(unittest.TestCase):
                 self.assertIn(f'id="{element_id}"', html)
         self.assertIn('href="picturebook/"', html)
         self.assertIn('href="audiobook/"', html)
+        self.assertIn('href="video/"', html)
 
     def test_frontend_does_not_contain_api_key(self) -> None:
         script = (PROJECT_ROOT / "src" / "web" / "assets" / "app.js").read_text(

@@ -14,6 +14,8 @@ PICTUREBOOK_STORY = PROJECT_ROOT / "outputs" / "stories" / "homework2-demo-story
 AUDIOBOOK_DIR = PROJECT_ROOT / "src" / "audiobook_web"
 AUDIOBOOK_OUTPUT = PROJECT_ROOT / "outputs" / "audio" / "homework3"
 AUDIOBOOK_SCRIPT = PROJECT_ROOT / "outputs" / "stories" / "homework3-audiobook-script.json"
+VIDEO_DIR = PROJECT_ROOT / "src" / "video_web"
+VIDEO_OUTPUT = PROJECT_ROOT / "outputs" / "video" / "homework4"
 DIST_DIR = PROJECT_ROOT / "dist"
 
 
@@ -34,6 +36,12 @@ def build() -> None:
             raise FileNotFoundError(f"找不到有声书成果：{path}")
     if not AUDIOBOOK_SCRIPT.exists():
         raise FileNotFoundError(f"找不到有声书脚本：{AUDIOBOOK_SCRIPT}")
+    if not VIDEO_DIR.exists():
+        raise FileNotFoundError(f"找不到短视频网页源码：{VIDEO_DIR}")
+    for required_video_file in ("xiaoyu-story-video.mp4", "thumbnail.jpg", "video-plan.json"):
+        path = VIDEO_OUTPUT / required_video_file
+        if not path.exists():
+            raise FileNotFoundError(f"找不到作业4视频成果：{path}")
 
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copytree(SOURCE_DIR, DIST_DIR, dirs_exist_ok=True)
@@ -57,6 +65,17 @@ def build() -> None:
     audiobook_data = audiobook_dist / "data"
     audiobook_data.mkdir(parents=True, exist_ok=True)
     shutil.copy2(AUDIOBOOK_SCRIPT, audiobook_data / "script.json")
+
+    video_dist = DIST_DIR / "video"
+    shutil.copytree(VIDEO_DIR, video_dist, dirs_exist_ok=True)
+    video_assets = video_dist / "assets"
+    video_media = video_assets / "video"
+    video_media.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(VIDEO_OUTPUT / "xiaoyu-story-video.mp4", video_media / "xiaoyu-story-video.mp4")
+    shutil.copy2(VIDEO_OUTPUT / "thumbnail.jpg", video_assets / "thumbnail.jpg")
+    video_data = video_dist / "data"
+    video_data.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(VIDEO_OUTPUT / "video-plan.json", video_data / "video-plan.json")
     print(f"静态网站已生成：{DIST_DIR}")
 
 
