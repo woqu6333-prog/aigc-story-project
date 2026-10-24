@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="星光故事屋MiniMax H3 Ref2VA真实动态镜头实验。" />
+    <title>AI动态镜头实验｜星光故事屋</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <nav><a href="../">← 返回故事创作</a><span>作业2–6 · 动态画面技术验证</span></nav>
+
+      <header>
+        <p class="eyebrow">MINIMAX H3 · REF2VA</p>
+        <h1>这次不是照片在移动，<br /><span>而是画面里的角色真的动起来。</span></h1>
+        <p class="lead">角色设定图锁定人物外貌，场景图锁定首帧构图，H3负责生成动作、环境变化和原生声音。</p>
+      </header>
+
+      <section class="demo-grid">
+        <div class="video-card">
+          <div class="video-topline"><span class="live-dot"></span> 已验证样片 · 5秒 · 24fps</div>
+          <video id="resultVideo" controls loop playsinline poster="../picturebook/assets/images/scene-01.png">
+            <source src="media/h3-reference.mp4" type="video/mp4" />
+          </video>
+          <div class="video-caption">
+            <strong>《小雨发现月光脚印》动态镜头</strong>
+            <span>参考图生视频 · 人物服装与场景连续性保持</span>
+          </div>
+        </div>
+
+        <aside class="control-card">
+          <p class="card-kicker">现场生成控制台</p>
+          <h2>重新生成一个动作</h2>
+          <label for="actionInput">动作描述</label>
+          <textarea id="actionInput" rows="6">she kneels beside the footprints, points to the nearest print, then looks ahead with a quiet spark of discovery</textarea>
+          <div class="facts">
+            <span>5秒</span><span>0.2MP快速预览</span><span>Turbo 4步</span><span>约100秒</span>
+          </div>
+          <div class="status" id="h3Status" data-state="checking">
+            <span></span><div><strong id="statusTitle">正在检测本地H3</strong><small id="statusDetail">请稍候……</small></div>
+          </div>
+          <button id="generateButton" disabled>生成新的5秒动态镜头</button>
+          <p class="note">静态GitHub Pages只播放已生成样片；本机运行 <code>python scripts/run_app.py</code> 后，按钮会连接ComfyUI。</p>
+        </aside>
+      </section>
+
+      <section class="explain">
+        <article><span>01</span><h3>人物参考</h3><p>使用作业2角色设定图锁定短发、月牙发夹、黄色雨衣、恐龙挎包与红雨靴。</p></article>
+        <article><span>02</span><h3>场景首帧</h3><p>使用绘本第一幕作为首帧，保留月光森林、脚印、湿地与萤火虫的构图。</p></article>
+        <article><span>03</span><h3>真实运动</h3><p>角色蹲下、指向脚印并抬头观察；树叶、水滴、萤火虫同步产生细微变化。</p></article>
+      </section>
+    </main>
+  </body>
+</html>

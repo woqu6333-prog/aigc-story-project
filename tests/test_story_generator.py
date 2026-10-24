@@ -28,6 +28,7 @@ def valid_request() -> StoryRequest:
         theme="勇气",
         story_length="短篇",
         target_age=7,
+        plot_idea="小雨跟着脚印寻找迷路的小鸟",
     )
 
 
@@ -131,6 +132,8 @@ class PromptTests(unittest.TestCase):
         self.assertIn("不能只机械重复兴趣名称", combined)
         self.assertIn("长短句交替", combined)
         self.assertIn("通过选择、行动和结果表现成长", combined)
+        self.assertIn("小雨跟着脚印寻找迷路的小鸟", combined)
+        self.assertIn("删掉任意一幕是否会破坏故事因果链", combined)
 
     def test_polish_prompt_preserves_structure_and_improves_style(self) -> None:
         messages = build_polish_messages(valid_request(), valid_story_payload())

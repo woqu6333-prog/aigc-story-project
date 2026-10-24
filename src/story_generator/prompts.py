@@ -80,8 +80,7 @@ def request_as_text(request: StoryRequest) -> str:
         "中篇": "4至5个场景，每个场景约120至180字",
         "长篇": "6至8个场景，每个场景约160至240字",
     }
-    return "\n".join(
-        [
+    lines = [
             f"主角名字：{request.hero_name}",
             f"主角年龄：{request.hero_age}岁",
             f"主角兴趣：{request.interest}",
@@ -90,7 +89,11 @@ def request_as_text(request: StoryRequest) -> str:
             f"篇幅：{request.story_length}（{length_rules[request.story_length]}）",
             f"目标读者：{request.target_age}岁儿童",
         ]
-    )
+    if request.plot_idea:
+        lines.append(f"用户原始剧情设想：{request.plot_idea}")
+    else:
+        lines.append("用户原始剧情设想：未填写，请根据其他字段原创")
+    return "\n".join(lines)
 
 
 def build_messages(strategy: PromptStrategy, request: StoryRequest) -> list[dict[str, str]]:
@@ -152,7 +155,7 @@ def _role_constraints(request: StoryRequest) -> list[dict[str, str]]:
             "content": (
                 f"请根据以下创作卡片生成结构化故事：\n{request_as_text(request)}\n\n"
                 "创作约束：\n"
-                "1. 先在内部确定起因、困难、尝试、解决和成长，再输出最终JSON，不展示思考过程。\n"
+                "1. 先在内部确定一条单一主线：起因、明确目标、阻碍、至少一次失败或误判、基于已有线索的解决和成长，再输出最终JSON，不展示思考过程。\n"
                 "2. 主角的兴趣必须在关键场景中帮助观察、沟通或解决问题，不能只机械重复兴趣名称。\n"
                 "3. 场景之间必须存在明确因果关系，不得突然增加关键人物、道具或能力。\n"
                 "4. characters中必须包含主角，主角姓名在全文保持一致。\n"
@@ -164,6 +167,9 @@ def _role_constraints(request: StoryRequest) -> list[dict[str, str]]:
                 "10. 不要把人物设定逐项复述成说明书，不要在每个场景重复讲道理；通过选择、行动和结果表现成长。\n"
                 "11. 每个场景都要推进情节：承接上一幕留下的线索，并为下一幕提供新的原因或目标。\n"
                 "12. 严格按照下方结构输出JSON，不要Markdown代码块、注释或额外文字。\n\n"
+                "13. 用户填写了剧情设想时，必须保留其中的核心人物、目标、地点、关键事件和结局倾向；可以补足因果，但不得换成另一个故事。\n"
+                "14. 每一幕开头必须承接上一幕的具体结果；解决办法必须由前文出现过的知识、道具、线索或伙伴能力推出。\n"
+                "15. 写完后在内部自检：删掉任意一幕是否会破坏故事因果链；如果不会，就重写该幕使其真正推进情节。\n\n"
                 f"输出JSON结构：\n{SCHEMA_DESCRIPTION}"
             ),
         },

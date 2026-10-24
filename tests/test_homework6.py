@@ -60,6 +60,23 @@ class Homework6AgentTests(unittest.TestCase):
             self.assertTrue(expected.issubset(actions))
             self.assertTrue(all(entry["status"] == "completed" for entry in log))
 
+    def test_offline_story_keeps_original_idea_and_causal_steps(self) -> None:
+        materials = self.agent._retrieve_materials("男孩去森林寻找小鸟")
+        story = json.loads(
+            self.agent._write_story(
+                "男孩去森林寻找小鸟",
+                "阿川",
+                "细心的8岁男孩",
+                "雨后的月光森林",
+                "友谊与勇气",
+                materials,
+            )
+        )
+        combined = "".join(scene["content"] for scene in story["scenes"])
+        self.assertIn("男孩去森林寻找小鸟", combined)
+        self.assertIn("失败", combined)
+        self.assertEqual(story["generation"]["mode"], "offline-causal-fallback")
+
     def test_agent_web_distribution(self) -> None:
         dist = PROJECT_ROOT / "dist" / "agent"
         for case_id in ("case-01-space", "case-02-ocean"):

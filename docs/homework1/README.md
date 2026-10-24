@@ -28,7 +28,13 @@ python -m pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-然后编辑 `.env`，填写所选服务商的 `LLM_API_KEY`、`LLM_BASE_URL` 和 `LLM_MODEL`。
+推荐使用 Google AI Studio 的 Gemini API 免费额度。编辑 `.env`，只填：
+
+```dotenv
+GEMINI_API_KEY=你的密钥
+```
+
+程序会自动使用 Gemini 官方 OpenAI 兼容端点与 `gemini-3.8-flash`。也可以填写 `.env.example` 中的 `LLM_API_KEY`、`LLM_BASE_URL` 和 `LLM_MODEL`，改用其他 OpenAI 兼容服务。
 
 ## 不调用API预览Prompt
 
@@ -57,7 +63,7 @@ python scripts\generate_story.py `
 .\.venv\Scripts\python.exe scripts\run_app.py
 ```
 
-然后打开 `http://127.0.0.1:8000`。网页会先调用 `/api/story` 生成并校验JSON；生成成功后可点击“AI润色”，由 `/api/polish` 进行第二次文学编辑，并再次执行相同的结构与内容校验。
+然后打开 `http://127.0.0.1:8000`。可以输入或口述一段完整剧情设想；网页会调用 `/api/story`，要求模型保留核心人物、目标、关键事件和结局倾向，并按照“起因—目标—阻碍—失败—线索解决—成长”建立因果链。生成成功后可点击“AI润色”，由 `/api/polish` 进行第二次文学编辑，并再次执行相同的结构与内容校验。
 
 直接双击 `dist/index.html` 或使用普通静态服务器时，页面只运行离线演示，不会也不能读取API密钥。
 

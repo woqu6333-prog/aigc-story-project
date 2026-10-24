@@ -38,6 +38,7 @@
             <a class="picturebook-link" href="picturebook/">绘本成果 →</a>
             <a class="picturebook-link audiobook-link" href="audiobook/">有声书 →</a>
             <a class="picturebook-link video-link" href="video/">短视频 →</a>
+            <a class="picturebook-link motion-link" href="motion/">AI动态镜头 →</a>
             <a class="picturebook-link library-link" href="library/">素材库 →</a>
             <a class="picturebook-link agent-link" href="agent/">Agent →</a>
           </nav>
@@ -127,6 +128,27 @@
                 <option value="云海灯塔岛">云海灯塔岛</option>
                 <option value="会唱歌的小河谷">会唱歌的小河谷</option>
               </select>
+            </div>
+
+            <div class="form-field plot-field">
+              <div class="field-label-row">
+                <label for="plotIdea">你想发生什么？</label>
+                <button class="voice-button" id="voiceButton" type="button" aria-label="用语音输入剧情">
+                  <span aria-hidden="true">●</span><span id="voiceButtonLabel">说出剧情</span>
+                </button>
+              </div>
+              <textarea
+                id="plotIdea"
+                name="plotIdea"
+                maxlength="500"
+                rows="5"
+                placeholder="例如：小雨在森林里发现一串恐龙脚印，跟着脚印找到一只受伤的小鸟。她用恐龙知识判断危险，和伙伴一起把小鸟送回家。"
+                aria-describedby="plotIdeaHint plotIdeaError"
+              ></textarea>
+              <div class="field-meta">
+                <small id="plotIdeaHint">可直接输入，也可点击“说出剧情”使用浏览器语音识别</small>
+                <small class="field-error" id="plotIdeaError"></small>
+              </div>
             </div>
 
             <fieldset class="theme-fieldset">
@@ -247,6 +269,14 @@
                   <p>2分18秒，包含画面、配音、原创背景音乐与烧录字幕。</p>
                 </div>
                 <a href="video/">播放故事视频 →</a>
+              </div>
+              <div class="picturebook-cta motion-cta">
+                <div>
+                  <small>真实AI动态实验</small>
+                  <strong>不是照片平移，而是H3生成的新动作</strong>
+                  <p>已验证5秒Ref2VA镜头；本地服务在线时可现场重新生成。</p>
+                </div>
+                <a href="motion/">查看动态镜头 →</a>
               </div>
               <div class="picturebook-cta library-cta">
                 <div>

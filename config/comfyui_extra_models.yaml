@@ -1,0 +1,18 @@
+shared_models:
+  base_path: D:/Comfy-Desktop/ComfyUI-Shared/
+  checkpoints: models/checkpoints/
+  configs: models/configs/
+  loras: models/loras/
+  vae: models/vae/
+  text_encoders: |
+    models/text_encoders/
+    models/clip/
+  diffusion_models: |
+    models/unet/
+    models/diffusion_models/
+  clip_vision: models/clip_vision/
+  style_models: models/style_models/
+  embeddings: models/embeddings/
+  controlnet: models/controlnet/
+  upscale_models: models/upscale_models/
+  audio_encoders: models/audio_encoders/

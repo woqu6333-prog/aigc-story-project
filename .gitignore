@@ -28,6 +28,7 @@ outputs/audio/*.wav
 
 # Local browser visual-QA artifacts
 outputs/edge-profile*/
+.tmp-edge-home/
 outputs/screenshots/
 
 # 作业3可重新生成的分段缓存与拼接临时文件
@@ -41,6 +42,10 @@ outputs/audio/homework3/concat-list.txt
 # 作业4可重新生成的中间视频、字幕图层和无损音乐
 outputs/video/homework4/temp/
 outputs/video/homework4/background-music.wav
+
+# H3网页现场生成的临时镜头；仓库只保留已选定的验证样片
+outputs/video/h3/live/
+dist/motion/media/[0-9a-f]*.mp4
 
 # 作业6可重建的视频分段缓存
 outputs/agent/homework6/*/video-parts/

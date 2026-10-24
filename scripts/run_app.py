@@ -5,7 +5,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import threading
+import uuid
 from datetime import datetime
 from functools import partial
 from http import HTTPStatus
@@ -29,9 +32,20 @@ from story_generator.config import ConfigurationError, LLMConfig  # noqa: E402
 from story_generator.models import StoryOutput, StoryRequest  # noqa: E402
 from story_generator.prompts import PromptStrategy  # noqa: E402
 from story_generator.service import StoryGenerationError, StoryGenerator  # noqa: E402
+from h3_video import ComfyUIClient, build_h3_api_workflow, build_ref2va_prompt  # noqa: E402
 
 
 MAX_REQUEST_BYTES = 100_000
+H3_WORKFLOW = Path(
+    os.getenv(
+        "H3_WORKFLOW_PATH",
+        r"D:\Comfy-Desktop\ComfyUI-Installs\ComfyUI (1)\ComfyUI\user\default\workflows\video_minimax_h3_r2v.json",
+    )
+)
+H3_SERVER_URL = os.getenv("H3_COMFYUI_URL", "http://127.0.0.1:8188").strip()
+H3_REFERENCE_DIR = PROJECT_ROOT / "outputs" / "images" / "homework2"
+H3_JOBS: dict[str, dict[str, Any]] = {}
+H3_LOCK = threading.Lock()
 THEME_MAP = {
     "courage": "勇气",
     "friendship": "友谊",
@@ -57,7 +71,94 @@ def story_request_from_payload(payload: dict[str, Any]) -> StoryRequest:
         theme=THEME_MAP[theme_value],  # type: ignore[arg-type]
         story_length=str(payload.get("story_length", "短篇")).strip(),  # type: ignore[arg-type]
         target_age=int(payload.get("target_age", age)),
+        plot_idea=str(payload.get("plot_idea", "")).strip(),
     )
+
+
+def h3_health() -> dict[str, Any]:
+    try:
+        stats = ComfyUIClient(H3_SERVER_URL, timeout=3).health()
+    except Exception as exc:
+        return {"available": False, "message": f"ComfyUI未启动：{exc}"}
+    devices = stats.get("devices", [])
+    device_name = devices[0].get("name", "GPU") if devices else "GPU"
+    return {
+        "available": H3_WORKFLOW.exists(),
+        "message": "H3已就绪" if H3_WORKFLOW.exists() else "未找到H3工作流",
+        "device": device_name,
+        "estimated_seconds": 110,
+    }
+
+
+def run_h3_job(job_id: str, payload: dict[str, Any]) -> None:
+    output_dir = PROJECT_ROOT / "outputs" / "video" / "h3" / "live"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output = output_dir / f"{job_id}.mp4"
+    manifest_path = output.with_suffix(".json")
+    try:
+        duration = max(4, min(8, int(payload.get("duration", 5))))
+        action = str(payload.get("action", "")).strip() or (
+            "she kneels beside the footprints, points to the nearest print, "
+            "then looks ahead with a quiet spark of discovery"
+        )
+        mood = str(payload.get("mood", "gentle curiosity and calm courage")).strip()
+        prompt = build_ref2va_prompt(
+            character_name="Xiaoyu",
+            action=action,
+            scene="a wet moonlit forest path after rain",
+            mood=mood,
+            duration=duration,
+        )
+        client = ComfyUIClient(H3_SERVER_URL, timeout=60)
+        character = client.upload_image(H3_REFERENCE_DIR / "xiaoyu-character-sheet.png")
+        scene = client.upload_image(H3_REFERENCE_DIR / "scene-01.png")
+        workflow = build_h3_api_workflow(
+            json.loads(H3_WORKFLOW.read_text(encoding="utf-8")),
+            prompt=prompt,
+            character_image=character,
+            scene_image=scene,
+            duration=duration,
+            megapixels=0.2,
+            seed=int(payload.get("seed", 20261024)),
+            filename_prefix=f"video/Story_H3_live_{job_id}",
+            quality="fast",
+        )
+        prompt_id = client.queue(workflow)
+        with H3_LOCK:
+            H3_JOBS[job_id].update({"status": "running", "prompt_id": prompt_id})
+        history = client.wait(prompt_id, timeout_seconds=900, poll_seconds=3)
+        result = client.download_first_video(history, output)
+
+        public_dir = DIST_DIR / "motion" / "media"
+        public_dir.mkdir(parents=True, exist_ok=True)
+        public_output = public_dir / f"{job_id}.mp4"
+        public_output.write_bytes(output.read_bytes())
+        manifest_path.write_text(
+            json.dumps(
+                {
+                    "job_id": job_id,
+                    "mode": "MiniMax H3 Ref2VA",
+                    "quality": "fast",
+                    "duration_seconds": duration,
+                    "prompt": prompt,
+                    "result": result,
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+        with H3_LOCK:
+            H3_JOBS[job_id].update(
+                {
+                    "status": "completed",
+                    "video_url": f"/motion/media/{job_id}.mp4",
+                    "message": "H3真实动态镜头生成完成",
+                }
+            )
+    except Exception as exc:
+        with H3_LOCK:
+            H3_JOBS[job_id].update({"status": "failed", "message": str(exc)})
 
 
 def save_story(story: StoryOutput, suffix: str) -> Path:
@@ -76,6 +177,18 @@ class StoryAppHandler(SimpleHTTPRequestHandler):
         if path == "/api/health":
             self._handle_health()
             return
+        if path == "/api/h3/health":
+            self._send_json(HTTPStatus.OK, {"ok": True, **h3_health()})
+            return
+        if path.startswith("/api/h3/jobs/"):
+            job_id = path.rsplit("/", 1)[-1]
+            with H3_LOCK:
+                job = H3_JOBS.get(job_id)
+            if job is None:
+                self._send_json(HTTPStatus.NOT_FOUND, {"ok": False, "message": "任务不存在"})
+            else:
+                self._send_json(HTTPStatus.OK, {"ok": True, "job": job})
+            return
         super().do_GET()
 
     def do_POST(self) -> None:  # noqa: N802
@@ -85,6 +198,9 @@ class StoryAppHandler(SimpleHTTPRequestHandler):
             return
         if path == "/api/polish":
             self._handle_generate(polish=True)
+            return
+        if path == "/api/h3/generate":
+            self._handle_h3_generate()
             return
         self._send_json(HTTPStatus.NOT_FOUND, {"ok": False, "message": "接口不存在"})
 
@@ -106,6 +222,24 @@ class StoryAppHandler(SimpleHTTPRequestHandler):
                 "message": "API已配置，可生成并润色故事",
             },
         )
+
+    def _handle_h3_generate(self) -> None:
+        health = h3_health()
+        if not health["available"]:
+            self._send_json(HTTPStatus.SERVICE_UNAVAILABLE, {"ok": False, "message": health["message"]})
+            return
+        try:
+            payload = self._read_json_body()
+            if len(str(payload.get("action", ""))) > 400:
+                raise ValueError("动作描述不能超过400个字符")
+        except (ValueError, TypeError) as exc:
+            self._send_json(HTTPStatus.BAD_REQUEST, {"ok": False, "message": str(exc)})
+            return
+        job_id = uuid.uuid4().hex[:12]
+        with H3_LOCK:
+            H3_JOBS[job_id] = {"id": job_id, "status": "queued", "message": "等待H3生成"}
+        threading.Thread(target=run_h3_job, args=(job_id, payload), daemon=True).start()
+        self._send_json(HTTPStatus.ACCEPTED, {"ok": True, "job_id": job_id, "estimated_seconds": 110})
 
     def _handle_generate(self, *, polish: bool) -> None:
         try:

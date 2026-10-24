@@ -23,11 +23,13 @@ class IntegratedStoryAppTests(unittest.TestCase):
                 "theme": "courage",
                 "story_length": "短篇",
                 "target_age": 7,
+                "plot_idea": "小雨在森林里发现脚印并帮助迷路的小鸟",
             }
         )
         self.assertEqual(request.hero_name, "小雨")
         self.assertEqual(request.theme, "勇气")
         self.assertEqual(request.setting, "月光森林")
+        self.assertIn("帮助迷路的小鸟", request.plot_idea)
 
     def test_web_payload_rejects_unknown_theme(self) -> None:
         with self.assertRaisesRegex(ValueError, "主题"):
@@ -49,6 +51,8 @@ class IntegratedStoryAppTests(unittest.TestCase):
             "generateButton",
             "polishButton",
             "storySourceNote",
+            "plotIdea",
+            "voiceButton",
         ]:
             with self.subTest(element_id=element_id):
                 self.assertIn(f'id="{element_id}"', html)
@@ -57,6 +61,7 @@ class IntegratedStoryAppTests(unittest.TestCase):
         self.assertIn('href="video/"', html)
         self.assertIn('href="library/"', html)
         self.assertIn('href="agent/"', html)
+        self.assertIn('href="motion/"', html)
 
     def test_frontend_does_not_contain_api_key(self) -> None:
         script = (PROJECT_ROOT / "src" / "web" / "assets" / "app.js").read_text(

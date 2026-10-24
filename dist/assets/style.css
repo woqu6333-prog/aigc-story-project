@@ -370,7 +370,8 @@ button {
 }
 
 .form-field input,
-.form-field select {
+.form-field select,
+.form-field textarea {
   width: 100%;
   height: 48px;
   padding: 0 14px;
@@ -380,6 +381,45 @@ button {
   color: var(--ink);
   background: #fff;
   transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form-field textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 118px;
+  height: auto;
+  padding: 12px 14px;
+  line-height: 1.7;
+  font: inherit;
+}
+
+.field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.voice-button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: #fff;
+  color: var(--accent-dark);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.voice-button span:first-child {
+  color: #db5b5b;
+  margin-right: 5px;
+}
+
+.voice-button.is-listening {
+  background: #fff0f0;
+  border-color: #efaaaa;
 }
 
 .form-field select {
@@ -400,7 +440,8 @@ button {
 }
 
 .form-field input:focus,
-.form-field select:focus {
+.form-field select:focus,
+.form-field textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft);
 }
@@ -452,9 +493,21 @@ button {
   line-height: 1.45;
 }
 
-.form-field input[aria-invalid="true"] {
+.form-field input[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
   border-color: #cf3e3e;
   box-shadow: 0 0 0 3px rgba(207, 62, 62, 0.1);
+}
+
+.motion-cta {
+  background: #eff8ff;
+  border-color: #bedff4;
+}
+
+.motion-cta small,
+.motion-cta a,
+.motion-link {
+  color: #116a9b;
 }
 
 .form-row {

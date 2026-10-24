@@ -20,6 +20,8 @@ LIBRARY_DIR = PROJECT_ROOT / "src" / "library_web"
 LIBRARY_OUTPUT = PROJECT_ROOT / "outputs" / "library" / "homework5"
 AGENT_DIR = PROJECT_ROOT / "src" / "agent_web"
 AGENT_OUTPUT = PROJECT_ROOT / "outputs" / "agent" / "homework6"
+MOTION_DIR = PROJECT_ROOT / "src" / "motion_web"
+H3_VIDEO_OUTPUT = PROJECT_ROOT / "outputs" / "video" / "h3" / "scene-01-h3-fast-simple.mp4"
 DIST_DIR = PROJECT_ROOT / "dist"
 
 
@@ -55,6 +57,8 @@ def build() -> None:
             path = AGENT_OUTPUT / case_id / filename
             if not path.exists():
                 raise FileNotFoundError(f"找不到作业6案例成果：{path}")
+    if not MOTION_DIR.exists() or not H3_VIDEO_OUTPUT.exists():
+        raise FileNotFoundError("找不到H3动态镜头网页或已验证样片")
 
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copytree(SOURCE_DIR, DIST_DIR, dirs_exist_ok=True)
@@ -108,6 +112,12 @@ def build() -> None:
         case_media = agent_media / case_id
         case_media.mkdir(parents=True, exist_ok=True)
         shutil.copy2(AGENT_OUTPUT / case_id / "story-video.mp4", case_media / "story-video.mp4")
+
+    motion_dist = DIST_DIR / "motion"
+    shutil.copytree(MOTION_DIR, motion_dist, dirs_exist_ok=True)
+    motion_media = motion_dist / "media"
+    motion_media.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(H3_VIDEO_OUTPUT, motion_media / "h3-reference.mp4")
     print(f"静态网站已生成：{DIST_DIR}")
 
 

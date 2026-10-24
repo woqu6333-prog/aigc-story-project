@@ -19,8 +19,13 @@ class StoryRequest(StrictModel):
     theme: Literal["勇气", "友谊", "环保"]
     story_length: Literal["短篇", "中篇", "长篇"] = "中篇"
     target_age: int = Field(ge=3, le=12, description="目标读者年龄")
+    plot_idea: str = Field(
+        default="",
+        max_length=500,
+        description="用户自由输入或语音转写的剧情设想",
+    )
 
-    @field_validator("hero_name", "interest", "setting")
+    @field_validator("hero_name", "interest", "setting", "plot_idea")
     @classmethod
     def reject_control_characters(cls, value: str) -> str:
         if any(ord(character) < 32 for character in value):

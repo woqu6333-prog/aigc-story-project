@@ -13,6 +13,9 @@ const nameInput = document.querySelector("#heroName");
 const ageInput = document.querySelector("#heroAge");
 const interestInput = document.querySelector("#heroInterest");
 const settingInput = document.querySelector("#storySetting");
+const plotIdeaInput = document.querySelector("#plotIdea");
+const voiceButton = document.querySelector("#voiceButton");
+const voiceButtonLabel = document.querySelector("#voiceButtonLabel");
 const emptyState = document.querySelector("#emptyState");
 const storyResult = document.querySelector("#storyResult");
 const storyTitle = document.querySelector("#storyTitle");
@@ -52,6 +55,7 @@ function currentProfile() {
     age: Number(ageInput.value),
     interest: interestInput.value.trim(),
     setting: settingInput.value,
+    plot_idea: plotIdeaInput.value.trim(),
     theme: selectedTheme(),
     story_length: "短篇",
     target_age: Number(ageInput.value),
@@ -72,6 +76,7 @@ function validateForm() {
   setFieldError(nameInput, "");
   setFieldError(ageInput, "");
   setFieldError(interestInput, "");
+  setFieldError(plotIdeaInput, "");
 
   if (!profile.name) {
     setFieldError(nameInput, "请填写主角名字");
@@ -91,6 +96,11 @@ function validateForm() {
     valid = false;
   } else if (profile.interest.length > 20) {
     setFieldError(interestInput, "兴趣不能超过20个字符");
+    valid = false;
+  }
+
+  if (profile.plot_idea.length > 500) {
+    setFieldError(plotIdeaInput, "剧情设想不能超过500个字符");
     valid = false;
   }
 
@@ -169,6 +179,37 @@ function createOfflineStory(profile) {
       moral: "保护自然从身边的小事开始，每一个行动都可能带来新的同行者。"
     }
   };
+
+  if (profile.plot_idea) {
+    const themeLesson = {
+      courage: "把害怕变成一次认真尝试",
+      friendship: "先听见伙伴的想法再一起行动",
+      nature: "从自己能做到的小事开始守护环境"
+    }[profile.theme];
+    return {
+      title: `${profile.name}的三步行动计划`,
+      sections: [
+        {
+          heading: "事情为什么发生",
+          text: `故事从这个设想开始：“${profile.plot_idea}”${profile.name}没有立刻冲上去，而是先说清楚自己要解决的具体问题，并观察${profile.setting}里已经出现的线索。`
+        },
+        {
+          heading: "第一次办法没有成功",
+          text: `${profile.name}试着用自己对${profile.interest}的了解解决问题，可第一次尝试忽略了一个关键条件，因此没有成功。${profile.name}停下来重新比较线索，也认真听完伙伴的发现，终于知道刚才错在哪里。`
+        },
+        {
+          heading: "线索带来真正的答案",
+          text: `${profile.name}把前两幕已经出现的线索重新组合，换了一个更安全、更照顾大家的办法，问题终于被解决。经历这件事后，${profile.name}学会了${themeLesson}。`
+        }
+      ],
+      moral: `好的答案来自前面留下的线索；${themeLesson}。`,
+      ...profile,
+      source: "offline",
+      createdAt: new Date().toISOString(),
+      rawStory: null,
+      generationMeta: null
+    };
+  }
 
   return {
     ...stories[profile.theme],
@@ -272,6 +313,7 @@ function renderStory(story) {
     `场景：${story.setting}`,
     ageReadingLabel(story.age)
   ];
+  if (story.plot_idea) metaItems.push("已采用自定义剧情");
   storyMeta.replaceChildren(...metaItems.map(createMetaChip));
   storySourceNote.textContent = sourceDescription(story);
 
@@ -422,6 +464,7 @@ function saveState() {
       age: ageInput.value,
       interest: interestInput.value.trim(),
       setting: settingInput.value,
+      plot_idea: plotIdeaInput.value.trim(),
       theme: selectedTheme()
     },
     story: currentStory
@@ -441,6 +484,7 @@ function restoreState() {
     ageInput.value = state.form.age ?? "";
     interestInput.value = state.form.interest ?? "";
     settingInput.value = state.form.setting || "月光森林";
+    plotIdeaInput.value = state.form.plot_idea || "";
     const themeInput = form.querySelector(`input[name="theme"][value="${state.form.theme}"]`);
     if (themeInput) themeInput.checked = true;
     document.documentElement.dataset.theme = state.form.theme || "courage";
@@ -459,7 +503,7 @@ form.addEventListener("submit", (event) => {
 });
 
 form.addEventListener("input", (event) => {
-  if (event.target.matches("input:not([type='radio'])")) setFieldError(event.target, "");
+  if (event.target.matches("input:not([type='radio']), textarea")) setFieldError(event.target, "");
 });
 
 form.addEventListener("change", (event) => {
@@ -471,6 +515,36 @@ regenerateButton.addEventListener("click", generateStory);
 polishButton.addEventListener("click", polishStory);
 copyButton.addEventListener("click", copyStory);
 downloadButton.addEventListener("click", downloadStory);
+
+function startVoiceInput() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    showToast("当前浏览器不支持语音识别，请直接输入剧情");
+    return;
+  }
+  const recognition = new SpeechRecognition();
+  recognition.lang = "zh-CN";
+  recognition.interimResults = true;
+  recognition.continuous = false;
+  const original = plotIdeaInput.value.trim();
+  voiceButton.disabled = true;
+  voiceButton.classList.add("is-listening");
+  voiceButtonLabel.textContent = "正在听……";
+  recognition.onresult = (event) => {
+    const transcript = Array.from(event.results).map((result) => result[0].transcript).join("");
+    plotIdeaInput.value = [original, transcript].filter(Boolean).join(original ? "，" : "").slice(0, 500);
+  };
+  recognition.onerror = (event) => showToast(`语音识别没有完成：${event.error}`);
+  recognition.onend = () => {
+    voiceButton.disabled = false;
+    voiceButton.classList.remove("is-listening");
+    voiceButtonLabel.textContent = "说出剧情";
+    saveState();
+  };
+  recognition.start();
+}
+
+voiceButton.addEventListener("click", startVoiceInput);
 
 restoreState();
 checkApiStatus();

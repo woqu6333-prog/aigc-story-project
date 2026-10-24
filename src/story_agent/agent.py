@@ -17,6 +17,11 @@ from mutagen.mp3 import MP3
 from audiobook.builder import find_ffmpeg
 from material_library import MaterialLibrary
 from material_library.library import _draw_scene
+from story_generator.client import OpenAICompatibleClient
+from story_generator.config import ConfigurationError, LLMConfig
+from story_generator.models import StoryRequest
+from story_generator.prompts import PromptStrategy
+from story_generator.service import StoryGenerator
 
 
 TOOL_NAMES = [
@@ -197,8 +202,66 @@ class StoryCreationAgent:
         materials = json.loads(materials_json)
         helper = materials["materials"]["characters"][0]["title"]
         scene_ref = materials["materials"]["scenes"][0]["title"]
+        interest = self._infer_interest(idea)
+        course_theme = "环保" if "环保" in theme else ("友谊" if "友谊" in theme else "勇气")
+        try:
+            config = LLMConfig.from_env()
+        except (ConfigurationError, ValueError):
+            config = None
+
+        if config is not None:
+            request = StoryRequest(
+                hero_name=protagonist,
+                hero_age=8,
+                interest=interest,
+                setting=setting,
+                theme=course_theme,
+                story_length="短篇",
+                target_age=8,
+                plot_idea=idea,
+            )
+            result = StoryGenerator(
+                OpenAICompatibleClient(config), max_retries=config.max_retries
+            ).generate(request, PromptStrategy.ROLE_CONSTRAINTS)
+            generated = result.story
+            return json.dumps(
+                {
+                    "title": generated.title,
+                    "idea": idea,
+                    "theme": theme,
+                    "characters": [
+                        {
+                            "name": character.name,
+                            "role": "主角" if character.name == protagonist else "伙伴",
+                            "description": f"{character.traits}；{character.appearance}",
+                        }
+                        for character in generated.characters
+                    ],
+                    "scenes": [
+                        {
+                            "id": scene.scene_id,
+                            "title": scene.description,
+                            "setting": setting,
+                            "content": scene.text,
+                            "emotion": scene.mood,
+                            "visual_prompt": scene.visual_prompt,
+                        }
+                        for scene in generated.scenes
+                    ],
+                    "moral": generated.moral,
+                    "generation": {
+                        "mode": "cloud-llm",
+                        "model": config.model,
+                        "strategy": result.strategy.value,
+                        "attempts": result.attempts,
+                        "material_backend": materials["backend"],
+                    },
+                },
+                ensure_ascii=False,
+            )
+
         story = {
-            "title": f"{protagonist}和{scene_ref}的秘密",
+            "title": f"{protagonist}解决了{scene_ref}的难题",
             "idea": idea,
             "theme": theme,
             "characters": [
@@ -206,14 +269,21 @@ class StoryCreationAgent:
                 {"name": helper, "role": "伙伴", "description": "来自素材库的向导伙伴，善于发现线索。"},
             ],
             "scenes": [
-                {"id": 1, "title": "出发", "setting": setting, "content": f"{protagonist}在{setting}发现一束忽明忽暗的光。它像在求救，也像在邀请。虽然心里有一点紧张，{protagonist}还是背好小背包，决定跟着光向前走。", "emotion": "好奇"},
-                {"id": 2, "title": "一起想办法", "setting": setting, "content": f"路被突然出现的障碍挡住了。{protagonist}没有独自逞强，而是和{helper}交换各自看到的线索。他们试了两次都没有成功，第三次终于找到了既安全又照顾大家的办法。", "emotion": "紧张到坚定"},
-                {"id": 3, "title": "把光分享出去", "setting": setting, "content": f"障碍消失后，微弱的光连成了一条明亮的路。{protagonist}明白，真正的勇敢不是从不害怕，而是愿意倾听伙伴、继续尝试，并把得到的光分享给后来的人。", "emotion": "温暖"},
+                {"id": 1, "title": "明确问题", "setting": setting, "content": f"{protagonist}来到{setting}，事情正像创意里描述的那样发生：{idea}。{protagonist}没有立刻行动，而是先和{helper}确认目标，并记下现场已经出现的三条线索。", "emotion": "好奇而谨慎"},
+                {"id": 2, "title": "从失败中找到缺口", "setting": setting, "content": f"{protagonist}第一次尝试只用到了自己熟悉的{interest}知识，却因为忽略其中一条线索而失败。{helper}没有直接给答案，而是指出前后矛盾的地方。两人重新比较刚才的结果，终于找到了失败的具体原因。", "emotion": "紧张到专注"},
+                {"id": 3, "title": "用已有线索解决问题", "setting": setting, "content": f"这一次，{protagonist}把{interest}知识、伙伴的提醒和第一幕记录的线索组合起来，完成了一个安全可行的办法。问题被解决后，{protagonist}也明白，真正的{theme}来自认真观察、承认失败并和伙伴一起修正。", "emotion": "释然与温暖"},
             ],
             "moral": f"{theme}不是口号，而是在遇到困难时做出的每一个小选择。",
-            "generation": {"mode": "offline-deterministic-agent", "material_backend": materials["backend"]},
+            "generation": {"mode": "offline-causal-fallback", "material_backend": materials["backend"]},
         }
         return json.dumps(story, ensure_ascii=False)
+
+    @staticmethod
+    def _infer_interest(idea: str) -> str:
+        for keyword in ("恐龙", "画画", "音乐", "足球", "星星", "机器人", "海洋", "动物", "阅读", "科学"):
+            if keyword in idea:
+                return keyword
+        return "观察和探索"
 
     def _illustrate(self, story_json: str, output_dir: str) -> str:
         story = json.loads(story_json)
