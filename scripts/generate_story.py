@@ -31,6 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--theme", choices=["勇气", "友谊", "环保"], required=True)
     parser.add_argument("--length", choices=["短篇", "中篇", "长篇"], default="中篇")
     parser.add_argument("--target-age", type=int, required=True, help="目标读者年龄，3至12岁")
+    parser.add_argument("--plot-idea", default="", help="用户自由剧情设想，最多500字")
     parser.add_argument(
         "--strategy",
         choices=[strategy.value for strategy in PromptStrategy],
@@ -54,6 +55,7 @@ def main() -> int:
             theme=args.theme,
             story_length=args.length,
             target_age=args.target_age,
+            plot_idea=args.plot_idea,
         )
         strategy = PromptStrategy(args.strategy)
     except ValueError as exc:

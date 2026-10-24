@@ -52,8 +52,9 @@ class AgentState:
 class StoryCreationAgent:
     """规则规划器 + LangChain工具层，支持执行前中途修改状态。"""
 
-    def __init__(self, project_root: Path) -> None:
+    def __init__(self, project_root: Path, *, enable_cloud_story: bool = True) -> None:
         self.project_root = Path(project_root)
+        self.enable_cloud_story = enable_cloud_story
         self.library_path = self.project_root / "outputs" / "library" / "homework5" / "index.json"
         if not self.library_path.exists():
             raise FileNotFoundError("请先运行 scripts/build_material_library.py")
@@ -204,10 +205,12 @@ class StoryCreationAgent:
         scene_ref = materials["materials"]["scenes"][0]["title"]
         interest = self._infer_interest(idea)
         course_theme = "环保" if "环保" in theme else ("友谊" if "友谊" in theme else "勇气")
-        try:
-            config = LLMConfig.from_env()
-        except (ConfigurationError, ValueError):
-            config = None
+        config = None
+        if self.enable_cloud_story:
+            try:
+                config = LLMConfig.from_env()
+            except (ConfigurationError, ValueError):
+                config = None
 
         if config is not None:
             request = StoryRequest(

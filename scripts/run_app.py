@@ -278,6 +278,12 @@ class StoryAppHandler(SimpleHTTPRequestHandler):
                 {"ok": False, "code": "generation_failed", "message": str(exc)},
             )
             return
+        except Exception as exc:  # 防止第三方SDK异常导致HTTP连接被直接中断
+            self._send_json(
+                HTTPStatus.BAD_GATEWAY,
+                {"ok": False, "code": "provider_error", "message": f"云端服务暂时不可用：{exc}"},
+            )
+            return
 
         self._send_json(
             HTTPStatus.OK,

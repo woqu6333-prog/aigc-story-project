@@ -95,7 +95,7 @@ http://localhost:8000/motion/
 GEMINI_API_KEY=你的密钥
 ```
 
-也可以根据 `.env.example` 配置其他 OpenAI 兼容服务。然后执行：
+默认使用响应较快的 `gemini-3.5-flash-lite`；遇到429、503等临时错误会自动重试并给出清楚提示。也可以根据 `.env.example` 配置其他 OpenAI 兼容服务。然后执行：
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\run_app.py

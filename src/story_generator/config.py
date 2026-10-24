@@ -47,7 +47,7 @@ class LLMConfig:
         if (not api_key or api_key == "your_api_key_here") and gemini_key:
             api_key = gemini_key
             if not model or model == "your_model_name_here":
-                model = "gemini-3.8-flash"
+                model = "gemini-3.5-flash-lite"
             if not base_url or "provider.example.com" in base_url:
                 base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
 

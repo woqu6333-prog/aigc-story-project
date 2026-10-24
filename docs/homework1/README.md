@@ -34,7 +34,7 @@ Copy-Item .env.example .env
 GEMINI_API_KEY=你的密钥
 ```
 
-程序会自动使用 Gemini 官方 OpenAI 兼容端点与 `gemini-3.8-flash`。也可以填写 `.env.example` 中的 `LLM_API_KEY`、`LLM_BASE_URL` 和 `LLM_MODEL`，改用其他 OpenAI 兼容服务。
+程序会自动使用 Gemini 官方 OpenAI 兼容端点与 `gemini-3.5-flash-lite`。也可以填写 `.env.example` 中的 `LLM_API_KEY`、`LLM_BASE_URL` 和 `LLM_MODEL`，改用其他 OpenAI 兼容服务。遇到429或503时客户端会自动重试；若仍失败，网页会显示友好错误而不会直接断开连接。
 
 ## 不调用API预览Prompt
 
@@ -47,6 +47,7 @@ python scripts\generate_story.py `
   --theme 勇气 `
   --length 短篇 `
   --target-age 7 `
+  --plot-idea "小雨发现像恐龙的脚印，后来用脚印大小判断出那是受伤小鸟留下的，并把它送回家" `
   --strategy role_constraints `
   --dry-run
 ```
@@ -77,7 +78,8 @@ python scripts\compare_prompts.py `
   --setting 月光森林 `
   --theme 勇气 `
   --length 短篇 `
-  --target-age 7
+  --target-age 7 `
+  --plot-idea "小雨发现像恐龙的脚印，后来用脚印大小判断出那是受伤小鸟留下的，并把它送回家"
 ```
 
 每种策略会生成一份 JSON，并产生 `automatic-metrics.csv`。内容质量仍需按照 [`prompt-comparison.md`](prompt-comparison.md) 人工打分。

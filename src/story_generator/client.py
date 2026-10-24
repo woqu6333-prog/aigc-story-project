@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from typing import Protocol
 
 from .config import LLMConfig
@@ -41,7 +42,25 @@ class OpenAICompatibleClient:
         if self._config.json_mode:
             request_kwargs["response_format"] = {"type": "json_object"}
 
-        response = self._client.chat.completions.create(**request_kwargs)
+        response = None
+        for attempt in range(self._config.max_retries + 1):
+            try:
+                response = self._client.chat.completions.create(**request_kwargs)
+                break
+            except Exception as exc:
+                status_code = getattr(exc, "status_code", None)
+                is_temporary = status_code in {408, 429, 500, 502, 503, 504}
+                if is_temporary and attempt < self._config.max_retries:
+                    time.sleep(1.5 * (attempt + 1))
+                    continue
+                if status_code == 503:
+                    raise RuntimeError("模型当前请求量过高，请稍后重试或换用Flash-Lite模型") from exc
+                if status_code == 429:
+                    raise RuntimeError("API免费额度或请求频率已达到限制，请稍后重试") from exc
+                raise RuntimeError(f"大模型API调用失败：{exc}") from exc
+
+        if response is None:  # pragma: no cover - 防御性分支
+            raise RuntimeError("大模型API没有返回结果")
         choice = response.choices[0]
 
         if choice.finish_reason == "length":

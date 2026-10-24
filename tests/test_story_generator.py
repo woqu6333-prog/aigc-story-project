@@ -134,6 +134,7 @@ class PromptTests(unittest.TestCase):
         self.assertIn("通过选择、行动和结果表现成长", combined)
         self.assertIn("小雨跟着脚印寻找迷路的小鸟", combined)
         self.assertIn("删掉任意一幕是否会破坏故事因果链", combined)
+        self.assertIn("不安排儿童独自爬树", combined)
 
     def test_polish_prompt_preserves_structure_and_improves_style(self) -> None:
         messages = build_polish_messages(valid_request(), valid_story_payload())

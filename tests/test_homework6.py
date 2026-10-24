@@ -17,7 +17,7 @@ from story_agent import TOOL_NAMES, StoryCreationAgent
 class Homework6AgentTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.agent = StoryCreationAgent(PROJECT_ROOT)
+        cls.agent = StoryCreationAgent(PROJECT_ROOT, enable_cloud_story=False)
         cls.output = PROJECT_ROOT / "outputs" / "agent" / "homework6"
 
     def test_agent_registers_at_least_four_langchain_tools(self) -> None:
