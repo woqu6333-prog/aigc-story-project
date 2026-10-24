@@ -1,0 +1,866 @@
+{
+  "metric": "相关标签命中率 Precision@5",
+  "backend": "visual-semantic-fallback",
+  "cases": [
+    {
+      "query": "女孩乘火箭去太空冒险",
+      "expected": [
+        "太空",
+        "火箭",
+        "星球"
+      ],
+      "top_image_ids": [
+        "img-space-rocket",
+        "img-space-moon",
+        "img-space-planets",
+        "img-space-robot",
+        "img-magic-dragon"
+      ],
+      "precision_at_5": 0.8,
+      "recommendation": {
+        "query": "女孩乘火箭去太空冒险",
+        "backend": "visual-semantic-fallback",
+        "materials": {
+          "templates": [
+            {
+              "id": "tpl-space",
+              "type": "template",
+              "title": "会唱歌的星球",
+              "description": "太空冒险。孩子乘火箭寻找失落的星光，在陌生星球学会勇气与倾听。",
+              "tags": [
+                "太空",
+                "火箭",
+                "星球",
+                "勇气",
+                "音乐"
+              ],
+              "search_text": "会唱歌的星球 太空冒险。孩子乘火箭寻找失落的星光，在陌生星球学会勇气与倾听。 太空 火箭 星球 勇气 音乐",
+              "score": 0.4668
+            },
+            {
+              "id": "tpl-city",
+              "type": "template",
+              "title": "停电夜的萤火地图",
+              "description": "城市探索。停电后，孩子们跟随萤火虫地图帮助邻居找到回家的路。",
+              "tags": [
+                "城市",
+                "夜晚",
+                "萤火虫",
+                "互助",
+                "探索"
+              ],
+              "search_text": "停电夜的萤火地图 城市探索。停电后，孩子们跟随萤火虫地图帮助邻居找到回家的路。 城市 夜晚 萤火虫 互助 探索",
+              "score": 0.0421
+            },
+            {
+              "id": "tpl-cloud",
+              "type": "template",
+              "title": "云朵邮差",
+              "description": "天空旅行。孩子驾驶纸飞机穿过云海，把一封迟到的道歉信送到彩虹镇。",
+              "tags": [
+                "天空",
+                "云朵",
+                "飞行",
+                "善意",
+                "彩虹"
+              ],
+              "search_text": "云朵邮差 天空旅行。孩子驾驶纸飞机穿过云海，把一封迟到的道歉信送到彩虹镇。 天空 云朵 飞行 善意 彩虹",
+              "score": 0.0347
+            }
+          ],
+          "characters": [
+            {
+              "id": "char-girl",
+              "type": "character",
+              "title": "小星",
+              "description": "勇敢的短发女孩，喜欢天文与画画",
+              "tags": [
+                "女孩",
+                "勇气",
+                "太空",
+                "画画"
+              ],
+              "search_text": "小星 勇敢的短发女孩，喜欢天文与画画 女孩 勇气 太空 画画",
+              "score": 0.6852
+            },
+            {
+              "id": "char-robot",
+              "type": "character",
+              "title": "咔嗒",
+              "description": "圆滚滚的维修机器人，擅长解谜",
+              "tags": [
+                "机器人",
+                "太空",
+                "科技",
+                "谜题"
+              ],
+              "search_text": "咔嗒 圆滚滚的维修机器人，擅长解谜 机器人 太空 科技 谜题",
+              "score": 0.2887
+            },
+            {
+              "id": "char-boy",
+              "type": "character",
+              "title": "阿川",
+              "description": "细心的小男孩，随身带着观察笔记",
+              "tags": [
+                "男孩",
+                "观察",
+                "自然",
+                "成长"
+              ],
+              "search_text": "阿川 细心的小男孩，随身带着观察笔记 男孩 观察 自然 成长",
+              "score": 0.0715
+            }
+          ],
+          "scenes": [
+            {
+              "id": "scene-launch",
+              "type": "scene",
+              "title": "星光发射台",
+              "description": "银白火箭停在蓝紫色夜空下，星尘沿跑道流动。",
+              "tags": [
+                "太空",
+                "火箭",
+                "夜晚",
+                "星空"
+              ],
+              "search_text": "星光发射台 银白火箭停在蓝紫色夜空下，星尘沿跑道流动。 太空 火箭 夜晚 星空",
+              "score": 0.4167
+            },
+            {
+              "id": "scene-city",
+              "type": "scene",
+              "title": "萤火城市",
+              "description": "停电后的街道被萤火虫点亮，窗户像星星一样闪烁。",
+              "tags": [
+                "城市",
+                "夜晚",
+                "萤火虫",
+                "探索"
+              ],
+              "search_text": "萤火城市 停电后的街道被萤火虫点亮，窗户像星星一样闪烁。 城市 夜晚 萤火虫 探索",
+              "score": 0.051
+            },
+            {
+              "id": "scene-library",
+              "type": "scene",
+              "title": "午夜图书馆",
+              "description": "书架延伸到星空，发光书页组成旋转楼梯。",
+              "tags": [
+                "图书馆",
+                "夜晚",
+                "魔法",
+                "谜题"
+              ],
+              "search_text": "午夜图书馆 书架延伸到星空，发光书页组成旋转楼梯。 图书馆 夜晚 魔法 谜题",
+              "score": 0.0414
+            }
+          ],
+          "images": [
+            {
+              "id": "img-space-rocket",
+              "type": "image",
+              "title": "星光火箭起航",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "太空",
+                "火箭",
+                "星球",
+                "勇气"
+              ],
+              "asset": "assets/images/img-space-rocket.png",
+              "search_text": "星光火箭起航 儿童绘本扁平插画，可作为场景构图与色板参考。 太空 火箭 星球 勇气",
+              "score": 0.4654
+            },
+            {
+              "id": "img-space-moon",
+              "type": "image",
+              "title": "月球上的脚印",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "月球",
+                "太空",
+                "脚印",
+                "冒险"
+              ],
+              "asset": "assets/images/img-space-moon.png",
+              "search_text": "月球上的脚印 儿童绘本扁平插画，可作为场景构图与色板参考。 月球 太空 脚印 冒险",
+              "score": 0.3605
+            },
+            {
+              "id": "img-space-planets",
+              "type": "image",
+              "title": "彩色星球相遇",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "宇宙",
+                "星球",
+                "银河",
+                "探索"
+              ],
+              "asset": "assets/images/img-space-planets.png",
+              "search_text": "彩色星球相遇 儿童绘本扁平插画，可作为场景构图与色板参考。 宇宙 星球 银河 探索",
+              "score": 0.3433
+            },
+            {
+              "id": "img-space-robot",
+              "type": "image",
+              "title": "机器人修理站",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "机器人",
+                "太空",
+                "科技",
+                "合作"
+              ],
+              "asset": "assets/images/img-space-robot.png",
+              "search_text": "机器人修理站 儿童绘本扁平插画，可作为场景构图与色板参考。 机器人 太空 科技 合作",
+              "score": 0.3195
+            },
+            {
+              "id": "img-magic-dragon",
+              "type": "image",
+              "title": "小龙点亮星灯",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "小龙",
+                "魔法",
+                "星光",
+                "勇气"
+              ],
+              "asset": "assets/images/img-magic-dragon.png",
+              "search_text": "小龙点亮星灯 儿童绘本扁平插画，可作为场景构图与色板参考。 小龙 魔法 星光 勇气",
+              "score": 0.063
+            },
+            {
+              "id": "img-forest-path",
+              "type": "image",
+              "title": "月光森林小路",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "森林",
+                "月光",
+                "小路",
+                "勇气"
+              ],
+              "asset": "assets/images/img-forest-path.png",
+              "search_text": "月光森林小路 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 月光 小路 勇气",
+              "score": 0.0362
+            }
+          ],
+          "sounds": [
+            {
+              "id": "sfx-space",
+              "type": "sound",
+              "title": "星际低鸣",
+              "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+              "tags": [
+                "太空",
+                "宇宙",
+                "科技",
+                "神秘"
+              ],
+              "asset": "assets/sounds/sfx-space.wav",
+              "search_text": "星际低鸣 3秒原创合成环境音，可循环作为场景氛围底音。 太空 宇宙 科技 神秘",
+              "score": 0.4443
+            },
+            {
+              "id": "sfx-magic",
+              "type": "sound",
+              "title": "魔法闪光",
+              "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+              "tags": [
+                "魔法",
+                "奇幻",
+                "星光",
+                "铃声"
+              ],
+              "asset": "assets/sounds/sfx-magic.wav",
+              "search_text": "魔法闪光 3秒原创合成环境音，可循环作为场景氛围底音。 魔法 奇幻 星光 铃声",
+              "score": 0.02
+            }
+          ]
+        },
+        "advice": {
+          "story_structure": "参考《会唱歌的星球》的三幕结构：遇到问题—尝试合作—完成成长。",
+          "visual_direction": "以“星光火箭起航”为首图，统一主角服装、色板和镜头风格。",
+          "audio_direction": "环境底音选用“星际低鸣”，对白优先保持清晰。"
+        }
+      }
+    },
+    {
+      "query": "森林里的小鸟友谊故事",
+      "expected": [
+        "森林",
+        "小鸟",
+        "友谊"
+      ],
+      "top_image_ids": [
+        "img-forest-bird",
+        "img-forest-river",
+        "img-forest-fox",
+        "img-forest-path",
+        "img-ocean-whale"
+      ],
+      "precision_at_5": 0.8,
+      "recommendation": {
+        "query": "森林里的小鸟友谊故事",
+        "backend": "visual-semantic-fallback",
+        "materials": {
+          "templates": [
+            {
+              "id": "tpl-forest",
+              "type": "template",
+              "title": "月光森林的约定",
+              "description": "森林友谊。两个性格不同的伙伴循着月光脚印，合作送迷路的小鸟回家。",
+              "tags": [
+                "森林",
+                "月光",
+                "友谊",
+                "小鸟",
+                "合作"
+              ],
+              "search_text": "月光森林的约定 森林友谊。两个性格不同的伙伴循着月光脚印，合作送迷路的小鸟回家。 森林 月光 友谊 小鸟 合作",
+              "score": 0.6583
+            },
+            {
+              "id": "tpl-snow",
+              "type": "template",
+              "title": "雪国的小太阳",
+              "description": "冰雪互助。主角寻找能融化孤独的太阳种子，把温暖分享给雪国居民。",
+              "tags": [
+                "冰雪",
+                "冬天",
+                "太阳",
+                "分享",
+                "温暖"
+              ],
+              "search_text": "雪国的小太阳 冰雪互助。主角寻找能融化孤独的太阳种子，把温暖分享给雪国居民。 冰雪 冬天 太阳 分享 温暖",
+              "score": 0.0958
+            },
+            {
+              "id": "tpl-farm",
+              "type": "template",
+              "title": "会说话的种子",
+              "description": "田园自然。一颗种子告诉主角四季的秘密，孩子学会耐心照料与等待。",
+              "tags": [
+                "农场",
+                "种子",
+                "植物",
+                "自然",
+                "耐心"
+              ],
+              "search_text": "会说话的种子 田园自然。一颗种子告诉主角四季的秘密，孩子学会耐心照料与等待。 农场 种子 植物 自然 耐心",
+              "score": 0.0398
+            }
+          ],
+          "characters": [
+            {
+              "id": "char-fox",
+              "type": "character",
+              "title": "橙尾",
+              "description": "热心的小狐狸，跑得快又会认路",
+              "tags": [
+                "狐狸",
+                "森林",
+                "友谊",
+                "冒险"
+              ],
+              "search_text": "橙尾 热心的小狐狸，跑得快又会认路 狐狸 森林 友谊 冒险",
+              "score": 0.6047
+            },
+            {
+              "id": "char-bird",
+              "type": "character",
+              "title": "蓝羽",
+              "description": "会说话的蓝色小鸟，机灵但偶尔胆小",
+              "tags": [
+                "小鸟",
+                "森林",
+                "朋友",
+                "蓝色"
+              ],
+              "search_text": "蓝羽 会说话的蓝色小鸟，机灵但偶尔胆小 小鸟 森林 朋友 蓝色",
+              "score": 0.4212
+            },
+            {
+              "id": "char-cloud",
+              "type": "character",
+              "title": "绵绵",
+              "description": "能够变成各种形状的小云朵",
+              "tags": [
+                "云朵",
+                "天空",
+                "想象",
+                "友谊"
+              ],
+              "search_text": "绵绵 能够变成各种形状的小云朵 云朵 天空 想象 友谊",
+              "score": 0.396
+            }
+          ],
+          "scenes": [
+            {
+              "id": "scene-moonforest",
+              "type": "scene",
+              "title": "月光森林",
+              "description": "高大树木围住一条发光小路，叶间落下柔和月光。",
+              "tags": [
+                "森林",
+                "月光",
+                "树木",
+                "夜晚"
+              ],
+              "search_text": "月光森林 高大树木围住一条发光小路，叶间落下柔和月光。 森林 月光 树木 夜晚",
+              "score": 0.3455
+            },
+            {
+              "id": "scene-farm",
+              "type": "scene",
+              "title": "四季农场",
+              "description": "麦田、果树与小木屋围绕会发光的种子。",
+              "tags": [
+                "农场",
+                "植物",
+                "种子",
+                "自然"
+              ],
+              "search_text": "四季农场 麦田、果树与小木屋围绕会发光的种子。 农场 植物 种子 自然",
+              "score": 0.0677
+            },
+            {
+              "id": "scene-river",
+              "type": "scene",
+              "title": "会唱歌的小河谷",
+              "description": "清澈河流绕过草地，音符形水花跃出水面。",
+              "tags": [
+                "河流",
+                "音乐",
+                "自然",
+                "山谷"
+              ],
+              "search_text": "会唱歌的小河谷 清澈河流绕过草地，音符形水花跃出水面。 河流 音乐 自然 山谷",
+              "score": 0.0417
+            }
+          ],
+          "images": [
+            {
+              "id": "img-forest-bird",
+              "type": "image",
+              "title": "蓝鸟回家",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "森林",
+                "小鸟",
+                "友谊",
+                "鸟巢"
+              ],
+              "asset": "assets/images/img-forest-bird.png",
+              "search_text": "蓝鸟回家 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 小鸟 友谊 鸟巢",
+              "score": 0.7433
+            },
+            {
+              "id": "img-forest-river",
+              "type": "image",
+              "title": "森林音乐河",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "森林",
+                "河流",
+                "音乐",
+                "自然"
+              ],
+              "asset": "assets/images/img-forest-river.png",
+              "search_text": "森林音乐河 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 河流 音乐 自然",
+              "score": 0.3818
+            },
+            {
+              "id": "img-forest-fox",
+              "type": "image",
+              "title": "狐狸与萤火虫",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "森林",
+                "狐狸",
+                "萤火虫",
+                "朋友"
+              ],
+              "asset": "assets/images/img-forest-fox.png",
+              "search_text": "狐狸与萤火虫 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 狐狸 萤火虫 朋友",
+              "score": 0.3468
+            },
+            {
+              "id": "img-forest-path",
+              "type": "image",
+              "title": "月光森林小路",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "森林",
+                "月光",
+                "小路",
+                "勇气"
+              ],
+              "asset": "assets/images/img-forest-path.png",
+              "search_text": "月光森林小路 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 月光 小路 勇气",
+              "score": 0.3321
+            },
+            {
+              "id": "img-ocean-whale",
+              "type": "image",
+              "title": "唱歌的小鲸鱼",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "海洋",
+                "鲸鱼",
+                "音乐",
+                "朋友"
+              ],
+              "asset": "assets/images/img-ocean-whale.png",
+              "search_text": "唱歌的小鲸鱼 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 鲸鱼 音乐 朋友",
+              "score": 0.0925
+            },
+            {
+              "id": "img-ocean-clean",
+              "type": "image",
+              "title": "海洋清洁队",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "海洋",
+                "环保",
+                "守护",
+                "合作"
+              ],
+              "asset": "assets/images/img-ocean-clean.png",
+              "search_text": "海洋清洁队 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 环保 守护 合作",
+              "score": 0.0686
+            }
+          ],
+          "sounds": [
+            {
+              "id": "sfx-forest",
+              "type": "sound",
+              "title": "月夜森林",
+              "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+              "tags": [
+                "森林",
+                "夜晚",
+                "虫鸣",
+                "自然"
+              ],
+              "asset": "assets/sounds/sfx-forest.wav",
+              "search_text": "月夜森林 3秒原创合成环境音，可循环作为场景氛围底音。 森林 夜晚 虫鸣 自然",
+              "score": 0.3601
+            },
+            {
+              "id": "sfx-rain",
+              "type": "sound",
+              "title": "屋檐小雨",
+              "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+              "tags": [
+                "雨天",
+                "自然",
+                "安静",
+                "睡前"
+              ],
+              "asset": "assets/sounds/sfx-rain.wav",
+              "search_text": "屋檐小雨 3秒原创合成环境音，可循环作为场景氛围底音。 雨天 自然 安静 睡前",
+              "score": 0.0472
+            }
+          ]
+        },
+        "advice": {
+          "story_structure": "参考《月光森林的约定》的三幕结构：遇到问题—尝试合作—完成成长。",
+          "visual_direction": "以“蓝鸟回家”为首图，统一主角服装、色板和镜头风格。",
+          "audio_direction": "环境底音选用“月夜森林”，对白优先保持清晰。"
+        }
+      }
+    },
+    {
+      "query": "海底鲸鱼保护珊瑚",
+      "expected": [
+        "海底",
+        "鲸鱼",
+        "珊瑚",
+        "环保"
+      ],
+      "top_image_ids": [
+        "img-ocean-coral",
+        "img-ocean-whale",
+        "img-ocean-sub",
+        "img-ocean-clean",
+        "img-city-firefly"
+      ],
+      "precision_at_5": 0.8,
+      "recommendation": {
+        "query": "海底鲸鱼保护珊瑚",
+        "backend": "visual-semantic-fallback",
+        "materials": {
+          "templates": [
+            {
+              "id": "tpl-ocean",
+              "type": "template",
+              "title": "珊瑚城清洁队",
+              "description": "海洋环保。孩子与小鲸鱼清理漂浮垃圾，让黯淡的珊瑚重新发光。",
+              "tags": [
+                "海底",
+                "鲸鱼",
+                "珊瑚",
+                "环保",
+                "守护"
+              ],
+              "search_text": "珊瑚城清洁队 海洋环保。孩子与小鲸鱼清理漂浮垃圾，让黯淡的珊瑚重新发光。 海底 鲸鱼 珊瑚 环保 守护",
+              "score": 0.7621
+            },
+            {
+              "id": "tpl-dino",
+              "type": "template",
+              "title": "恐龙谷的最后一颗蛋",
+              "description": "远古冒险。小小考古迷穿越恐龙谷，护送一颗蛋回到温暖巢穴。",
+              "tags": [
+                "恐龙",
+                "化石",
+                "冒险",
+                "守护",
+                "远古"
+              ],
+              "search_text": "恐龙谷的最后一颗蛋 远古冒险。小小考古迷穿越恐龙谷，护送一颗蛋回到温暖巢穴。 恐龙 化石 冒险 守护 远古",
+              "score": 0.0184
+            },
+            {
+              "id": "tpl-cloud",
+              "type": "template",
+              "title": "云朵邮差",
+              "description": "天空旅行。孩子驾驶纸飞机穿过云海，把一封迟到的道歉信送到彩虹镇。",
+              "tags": [
+                "天空",
+                "云朵",
+                "飞行",
+                "善意",
+                "彩虹"
+              ],
+              "search_text": "云朵邮差 天空旅行。孩子驾驶纸飞机穿过云海，把一封迟到的道歉信送到彩虹镇。 天空 云朵 飞行 善意 彩虹",
+              "score": 0.0157
+            }
+          ],
+          "characters": [
+            {
+              "id": "char-whale",
+              "type": "character",
+              "title": "泡泡",
+              "description": "爱唱歌的小鲸鱼，熟悉每一片珊瑚",
+              "tags": [
+                "鲸鱼",
+                "海洋",
+                "音乐",
+                "环保"
+              ],
+              "search_text": "泡泡 爱唱歌的小鲸鱼，熟悉每一片珊瑚 鲸鱼 海洋 音乐 环保",
+              "score": 0.5968
+            },
+            {
+              "id": "char-fairy",
+              "type": "character",
+              "title": "露珠",
+              "description": "守护植物的叶片精灵",
+              "tags": [
+                "精灵",
+                "魔法",
+                "植物",
+                "环保"
+              ],
+              "search_text": "露珠 守护植物的叶片精灵 精灵 魔法 植物 环保",
+              "score": 0.093
+            },
+            {
+              "id": "char-bird",
+              "type": "character",
+              "title": "蓝羽",
+              "description": "会说话的蓝色小鸟，机灵但偶尔胆小",
+              "tags": [
+                "小鸟",
+                "森林",
+                "朋友",
+                "蓝色"
+              ],
+              "search_text": "蓝羽 会说话的蓝色小鸟，机灵但偶尔胆小 小鸟 森林 朋友 蓝色",
+              "score": 0.0
+            }
+          ],
+          "scenes": [
+            {
+              "id": "scene-coral",
+              "type": "scene",
+              "title": "珊瑚花园",
+              "description": "彩色珊瑚与鱼群围绕透明海底城，光束穿过水面。",
+              "tags": [
+                "海底",
+                "珊瑚",
+                "鱼",
+                "海洋"
+              ],
+              "search_text": "珊瑚花园 彩色珊瑚与鱼群围绕透明海底城，光束穿过水面。 海底 珊瑚 鱼 海洋",
+              "score": 0.7568
+            },
+            {
+              "id": "scene-lighthouse",
+              "type": "scene",
+              "title": "云海灯塔岛",
+              "description": "金色灯塔立在漂浮小岛，云海中有鲸形影子。",
+              "tags": [
+                "灯塔",
+                "天空",
+                "云朵",
+                "冒险"
+              ],
+              "search_text": "云海灯塔岛 金色灯塔立在漂浮小岛，云海中有鲸形影子。 灯塔 天空 云朵 冒险",
+              "score": 0.0529
+            },
+            {
+              "id": "scene-river",
+              "type": "scene",
+              "title": "会唱歌的小河谷",
+              "description": "清澈河流绕过草地，音符形水花跃出水面。",
+              "tags": [
+                "河流",
+                "音乐",
+                "自然",
+                "山谷"
+              ],
+              "search_text": "会唱歌的小河谷 清澈河流绕过草地，音符形水花跃出水面。 河流 音乐 自然 山谷",
+              "score": 0.0278
+            }
+          ],
+          "images": [
+            {
+              "id": "img-ocean-coral",
+              "type": "image",
+              "title": "发光珊瑚城",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "海底",
+                "珊瑚",
+                "环保",
+                "鱼群"
+              ],
+              "asset": "assets/images/img-ocean-coral.png",
+              "search_text": "发光珊瑚城 儿童绘本扁平插画，可作为场景构图与色板参考。 海底 珊瑚 环保 鱼群",
+              "score": 0.6882
+            },
+            {
+              "id": "img-ocean-whale",
+              "type": "image",
+              "title": "唱歌的小鲸鱼",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "海洋",
+                "鲸鱼",
+                "音乐",
+                "朋友"
+              ],
+              "asset": "assets/images/img-ocean-whale.png",
+              "search_text": "唱歌的小鲸鱼 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 鲸鱼 音乐 朋友",
+              "score": 0.5706
+            },
+            {
+              "id": "img-ocean-sub",
+              "type": "image",
+              "title": "潜水艇探险",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "海底",
+                "潜水艇",
+                "探索",
+                "冒险"
+              ],
+              "asset": "assets/images/img-ocean-sub.png",
+              "search_text": "潜水艇探险 儿童绘本扁平插画，可作为场景构图与色板参考。 海底 潜水艇 探索 冒险",
+              "score": 0.5392
+            },
+            {
+              "id": "img-ocean-clean",
+              "type": "image",
+              "title": "海洋清洁队",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "海洋",
+                "环保",
+                "守护",
+                "合作"
+              ],
+              "asset": "assets/images/img-ocean-clean.png",
+              "search_text": "海洋清洁队 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 环保 守护 合作",
+              "score": 0.4943
+            },
+            {
+              "id": "img-city-firefly",
+              "type": "image",
+              "title": "萤火虫城市地图",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "城市",
+                "萤火虫",
+                "夜晚",
+                "互助"
+              ],
+              "asset": "assets/images/img-city-firefly.png",
+              "search_text": "萤火虫城市地图 儿童绘本扁平插画，可作为场景构图与色板参考。 城市 萤火虫 夜晚 互助",
+              "score": 0.0
+            },
+            {
+              "id": "img-dino-valley",
+              "type": "image",
+              "title": "绿色恐龙谷",
+              "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+              "tags": [
+                "恐龙",
+                "山谷",
+                "远古",
+                "探险"
+              ],
+              "asset": "assets/images/img-dino-valley.png",
+              "search_text": "绿色恐龙谷 儿童绘本扁平插画，可作为场景构图与色板参考。 恐龙 山谷 远古 探险",
+              "score": 0.0
+            }
+          ],
+          "sounds": [
+            {
+              "id": "sfx-ocean",
+              "type": "sound",
+              "title": "温柔海浪",
+              "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+              "tags": [
+                "海洋",
+                "海底",
+                "水",
+                "放松"
+              ],
+              "asset": "assets/sounds/sfx-ocean.wav",
+              "search_text": "温柔海浪 3秒原创合成环境音，可循环作为场景氛围底音。 海洋 海底 水 放松",
+              "score": 0.6868
+            },
+            {
+              "id": "sfx-rain",
+              "type": "sound",
+              "title": "屋檐小雨",
+              "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+              "tags": [
+                "雨天",
+                "自然",
+                "安静",
+                "睡前"
+              ],
+              "asset": "assets/sounds/sfx-rain.wav",
+              "search_text": "屋檐小雨 3秒原创合成环境音，可循环作为场景氛围底音。 雨天 自然 安静 睡前",
+              "score": 0.0104
+            }
+          ]
+        },
+        "advice": {
+          "story_structure": "参考《珊瑚城清洁队》的三幕结构：遇到问题—尝试合作—完成成长。",
+          "visual_direction": "以“发光珊瑚城”为首图，统一主角服装、色板和镜头风格。",
+          "audio_direction": "环境底音选用“温柔海浪”，对白优先保持清晰。"
+        }
+      }
+    }
+  ],
+  "average_precision_at_5": 0.8
+}

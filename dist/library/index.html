@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="星光故事屋多模态素材库：检索故事模板、人物、场景、插画与音效。" />
+    <title>故事素材星图｜多模态检索</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../"><span>✦</span>星光故事屋</a>
+      <nav aria-label="课程成果导航">
+        <a href="../picturebook/">绘本</a><a href="../audiobook/">有声书</a><a href="../video/">短视频</a>
+        <strong>作业5 · 素材检索</strong>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">MULTIMODAL STORY ATLAS · HOMEWORK 5</p>
+          <h1>从一句灵感，<br />找到一整套<br /><span>可以开工的故事素材。</span></h1>
+          <p class="intro">输入自然语言创意，同时检索故事模板、人物、场景、插画和声音，并自动整理成创作建议。</p>
+        </div>
+        <div class="stat-card" aria-label="素材库统计">
+          <div><strong id="totalCount">59</strong><span>条素材</span></div>
+          <div><strong>5</strong><span>种模态/类型</span></div>
+          <div><strong>0</strong><span>默认API费用</span></div>
+        </div>
+      </section>
+
+      <section class="search-panel" aria-labelledby="searchTitle">
+        <div class="search-copy">
+          <p class="eyebrow">NATURAL LANGUAGE SEARCH</p>
+          <h2 id="searchTitle">今天想创作什么？</h2>
+        </div>
+        <form id="searchForm">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="queryInput" value="女孩乘火箭去太空冒险" maxlength="80" aria-label="输入故事创意" />
+            <button type="submit">检索素材</button>
+          </label>
+        </form>
+        <div class="chips" aria-label="示例查询">
+          <button type="button" data-query="女孩乘火箭去太空冒险">太空冒险</button>
+          <button type="button" data-query="森林里的小鸟友谊故事">森林友谊</button>
+          <button type="button" data-query="海底鲸鱼保护珊瑚">海洋环保</button>
+          <button type="button" data-query="恐龙谷里的勇气挑战">恐龙勇气</button>
+        </div>
+        <div class="engine-note">
+          <span class="pulse"></span>
+          <strong>当前演示：</strong><span id="backendText">正在载入本地向量索引……</span>
+        </div>
+      </section>
+
+      <section class="advice" id="advicePanel" aria-live="polite">
+        <div><small>故事结构</small><p id="storyAdvice">等待检索</p></div>
+        <div><small>视觉方向</small><p id="visualAdvice">等待检索</p></div>
+        <div><small>声音氛围</small><p id="audioAdvice">等待检索</p></div>
+      </section>
+
+      <section class="results" aria-labelledby="resultTitle">
+        <div class="section-heading">
+          <div><p class="eyebrow">RECOMMENDED MATERIALS</p><h2 id="resultTitle">为你的创意匹配</h2></div>
+          <span id="resultMeta">载入中</span>
+        </div>
+        <div class="filter-tabs" id="filterTabs" role="tablist">
+          <button class="active" data-type="all">全部</button>
+          <button data-type="template">故事模板</button>
+          <button data-type="character">人物</button>
+          <button data-type="scene">场景</button>
+          <button data-type="image">插画</button>
+          <button data-type="sound">音效</button>
+        </div>
+        <div class="result-grid" id="resultGrid"></div>
+      </section>
+
+      <section class="explain">
+        <div>
+          <p class="eyebrow">HOW IT WORKS</p>
+          <h2>不是“搜到几个关键词”，<br />而是把素材放进同一个向量空间。</h2>
+        </div>
+        <ol>
+          <li><span>01</span><div><strong>文本向量化</strong><p>中文字符、词组和同义词扩展后生成 TF-IDF 向量。</p></div></li>
+          <li><span>02</span><div><strong>跨类型召回</strong><p>模板、人物、场景、图像标签与音效标签统一计算余弦相似度。</p></div></li>
+          <li><span>03</span><div><strong>图像双后端</strong><p>默认零下载语义特征；安装 OpenCLIP 后可切换真实图文编码。</p></div></li>
+          <li><span>04</span><div><strong>结构化推荐</strong><p>把高分素材组织成故事、视觉和声音三类建议。</p></div></li>
+        </ol>
+      </section>
+    </main>
+    <footer><span>作业5 · 儿童故事多模态素材库</span><a href="../agent/">下一步：多模态故事 Agent →</a></footer>
+    <template id="cardTemplate">
+      <article class="material-card">
+        <div class="media"></div>
+        <div class="card-body"><div class="card-meta"><span class="type"></span><span class="score"></span></div><h3></h3><p></p><div class="tags"></div></div>
+      </article>
+    </template>
+  </body>
+</html>

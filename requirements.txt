@@ -10,3 +10,6 @@ lameenc>=1.9,<2.0
 
 # 作业4：生成中文字幕图层与视频封面
 Pillow>=11,<13
+
+# 作业6：使用LangChain Core注册并编排多模态工具
+langchain-core>=1.0,<2.0

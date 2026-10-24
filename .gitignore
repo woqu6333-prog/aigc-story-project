@@ -41,3 +41,6 @@ outputs/audio/homework3/concat-list.txt
 # 作业4可重新生成的中间视频、字幕图层和无损音乐
 outputs/video/homework4/temp/
 outputs/video/homework4/background-music.wav
+
+# 作业6可重建的视频分段缓存
+outputs/agent/homework6/*/video-parts/

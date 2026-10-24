@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="星光故事导演：支持中途干预的多模态儿童故事Agent。" />
+    <title>星光故事导演｜多模态Agent</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../" class="brand"><span>✦</span>星光故事屋</a>
+      <nav><a href="../library/">素材库</a><a href="../video/">短视频</a><strong>作业6 · 故事Agent</strong></nav>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">INTERACTIVE MULTIMODAL AGENT · HOMEWORK 6</p>
+        <h1>你提供创意，Agent负责<br /><span>计划、调用工具<br />与完成交付。</span></h1>
+        <p>它会把一句话拆成5个步骤；如果你中途改变主角或场景，Agent会更新状态、作废旧成果，再按新要求继续执行。</p>
+        <div class="hero-tags"><span>LangChain Core</span><span>5个工具</span><span>可中途干预</span><span>本地可复现</span></div>
+      </section>
+
+      <section class="studio">
+        <div class="control-panel">
+          <div class="panel-title"><span>01</span><div><small>CREATIVE BRIEF</small><h2>给导演一句话</h2></div></div>
+          <label>故事创意<textarea id="ideaInput" rows="3">一个男孩乘火箭寻找会唱歌的星球</textarea></label>
+          <div class="split"><label>主角<select id="heroSelect"><option value="男孩阿川">男孩阿川</option><option value="女孩小星">女孩小星</option></select></label><label>核心场景<select id="sceneSelect"><option value="太空">太空</option><option value="森林">森林</option><option value="海底">海底</option><option value="恐龙山谷">恐龙山谷</option></select></label></div>
+          <button id="planButton" class="primary">让 Agent 制定计划 <span>→</span></button>
+          <div class="intervention">
+            <small>在执行前中途干预</small>
+            <input id="interventionInput" value="主角改成女孩，名字改成小星" />
+            <button id="interveneButton">应用修改并重排任务</button>
+          </div>
+          <p class="static-note">在线页用于可视化交互与已完成案例展示；真实媒体生成请在本地运行 <code>scripts/run_agent.py</code>。</p>
+        </div>
+        <div class="plan-panel">
+          <div class="panel-title"><span>02</span><div><small>AGENT PLAN</small><h2>实时执行计划</h2></div><b id="planStatus">等待规划</b></div>
+          <ol id="planList">
+            <li><i></i><div><strong>等待创意输入</strong><p>点击左侧按钮后，Agent会生成可检查的工具计划。</p></div></li>
+          </ol>
+          <div class="state-change" id="stateChange" hidden>
+            <small>HUMAN-IN-THE-LOOP</small><strong>已接收你的修改</strong><p id="changeText"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cases">
+        <div class="section-heading"><div><p class="eyebrow">COMPLETED RUNS</p><h2>两套完整运行案例</h2></div><div class="case-tabs"><button class="active" data-case="case-01-space">案例1 · 太空</button><button data-case="case-02-ocean">案例2 · 海底</button></div></div>
+        <article class="case-view">
+          <div class="video-column"><video id="caseVideo" controls preload="metadata"></video><div class="case-facts"><span><strong id="duration">—</strong>时长</span><span><strong>5/5</strong>工具成功</span><span><strong>1次</strong>人工干预</span></div></div>
+          <div class="case-copy"><small id="caseLabel">案例1</small><h3 id="caseTitle">载入中…</h3><p id="caseIdea"></p><div class="change-box"><span>修改前</span><p id="caseBefore"></p><b>↓</b><span>修改后</span><p id="caseAfter"></p></div><h4>三幕故事</h4><ol id="sceneList"></ol></div>
+        </article>
+      </section>
+
+      <section class="tools">
+        <div><p class="eyebrow">TOOLBOX</p><h2>不是一次性“变魔术”，<br />而是五个可检查的工具。</h2></div>
+        <ol>
+          <li><span>01</span><strong>retrieve_materials</strong><p>向量检索作业5素材库。</p></li>
+          <li><span>02</span><strong>write_structured_story</strong><p>输出三幕JSON故事。</p></li>
+          <li><span>03</span><strong>illustrate_scenes</strong><p>生成统一风格场景图。</p></li>
+          <li><span>04</span><strong>synthesize_narration</strong><p>Edge TTS生成中文旁白。</p></li>
+          <li><span>05</span><strong>compose_story_video</strong><p>FFmpeg合成可播放MP4。</p></li>
+        </ol>
+      </section>
+    </main>
+    <footer><span>作业6 · 可干预多模态故事Agent</span><a href="../">返回项目首页 →</a></footer>
+  </body>
+</html>

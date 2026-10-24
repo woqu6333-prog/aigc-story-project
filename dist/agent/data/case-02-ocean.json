@@ -1,0 +1,500 @@
+{
+  "case_id": "case-02-ocean",
+  "idea": "森林里的小鸟寻找丢失的歌声",
+  "protagonist": "小星",
+  "protagonist_profile": "勇敢、好奇的8岁女孩，黄色外套，蓝色小背包",
+  "setting": "发光的海底珊瑚城",
+  "theme": "环保与合作",
+  "status": "completed",
+  "plan": [
+    {
+      "step": "1",
+      "tool": "retrieve_materials",
+      "purpose": "检索可复用素材"
+    },
+    {
+      "step": "2",
+      "tool": "write_structured_story",
+      "purpose": "生成三幕JSON故事"
+    },
+    {
+      "step": "3",
+      "tool": "illustrate_scenes",
+      "purpose": "生成一致性场景图"
+    },
+    {
+      "step": "4",
+      "tool": "synthesize_narration",
+      "purpose": "生成中文旁白"
+    },
+    {
+      "step": "5",
+      "tool": "compose_story_video",
+      "purpose": "合成最终MP4"
+    }
+  ],
+  "materials": {
+    "query": "森林里的小鸟寻找丢失的歌声；主角小星；场景发光的海底珊瑚城；主题环保与合作",
+    "backend": "visual-semantic-fallback",
+    "materials": {
+      "templates": [
+        {
+          "id": "tpl-ocean",
+          "type": "template",
+          "title": "珊瑚城清洁队",
+          "description": "海洋环保。孩子与小鲸鱼清理漂浮垃圾，让黯淡的珊瑚重新发光。",
+          "tags": [
+            "海底",
+            "鲸鱼",
+            "珊瑚",
+            "环保",
+            "守护"
+          ],
+          "search_text": "珊瑚城清洁队 海洋环保。孩子与小鲸鱼清理漂浮垃圾，让黯淡的珊瑚重新发光。 海底 鲸鱼 珊瑚 环保 守护",
+          "score": 0.5889
+        },
+        {
+          "id": "tpl-forest",
+          "type": "template",
+          "title": "月光森林的约定",
+          "description": "森林友谊。两个性格不同的伙伴循着月光脚印，合作送迷路的小鸟回家。",
+          "tags": [
+            "森林",
+            "月光",
+            "友谊",
+            "小鸟",
+            "合作"
+          ],
+          "search_text": "月光森林的约定 森林友谊。两个性格不同的伙伴循着月光脚印，合作送迷路的小鸟回家。 森林 月光 友谊 小鸟 合作",
+          "score": 0.2679
+        },
+        {
+          "id": "tpl-music",
+          "type": "template",
+          "title": "丢失的七个音符",
+          "description": "音乐奇遇。七个音符躲进不同场景，主角用想象力找回完整旋律。",
+          "tags": [
+            "音乐",
+            "乐器",
+            "想象",
+            "冒险",
+            "合作"
+          ],
+          "search_text": "丢失的七个音符 音乐奇遇。七个音符躲进不同场景，主角用想象力找回完整旋律。 音乐 乐器 想象 冒险 合作",
+          "score": 0.1092
+        }
+      ],
+      "characters": [
+        {
+          "id": "char-whale",
+          "type": "character",
+          "title": "泡泡",
+          "description": "爱唱歌的小鲸鱼，熟悉每一片珊瑚",
+          "tags": [
+            "鲸鱼",
+            "海洋",
+            "音乐",
+            "环保"
+          ],
+          "search_text": "泡泡 爱唱歌的小鲸鱼，熟悉每一片珊瑚 鲸鱼 海洋 音乐 环保",
+          "score": 0.5027
+        },
+        {
+          "id": "char-fairy",
+          "type": "character",
+          "title": "露珠",
+          "description": "守护植物的叶片精灵",
+          "tags": [
+            "精灵",
+            "魔法",
+            "植物",
+            "环保"
+          ],
+          "search_text": "露珠 守护植物的叶片精灵 精灵 魔法 植物 环保",
+          "score": 0.2869
+        },
+        {
+          "id": "char-bird",
+          "type": "character",
+          "title": "蓝羽",
+          "description": "会说话的蓝色小鸟，机灵但偶尔胆小",
+          "tags": [
+            "小鸟",
+            "森林",
+            "朋友",
+            "蓝色"
+          ],
+          "search_text": "蓝羽 会说话的蓝色小鸟，机灵但偶尔胆小 小鸟 森林 朋友 蓝色",
+          "score": 0.2782
+        }
+      ],
+      "scenes": [
+        {
+          "id": "scene-coral",
+          "type": "scene",
+          "title": "珊瑚花园",
+          "description": "彩色珊瑚与鱼群围绕透明海底城，光束穿过水面。",
+          "tags": [
+            "海底",
+            "珊瑚",
+            "鱼",
+            "海洋"
+          ],
+          "search_text": "珊瑚花园 彩色珊瑚与鱼群围绕透明海底城，光束穿过水面。 海底 珊瑚 鱼 海洋",
+          "score": 0.4183
+        },
+        {
+          "id": "scene-moonforest",
+          "type": "scene",
+          "title": "月光森林",
+          "description": "高大树木围住一条发光小路，叶间落下柔和月光。",
+          "tags": [
+            "森林",
+            "月光",
+            "树木",
+            "夜晚"
+          ],
+          "search_text": "月光森林 高大树木围住一条发光小路，叶间落下柔和月光。 森林 月光 树木 夜晚",
+          "score": 0.2754
+        },
+        {
+          "id": "scene-farm",
+          "type": "scene",
+          "title": "四季农场",
+          "description": "麦田、果树与小木屋围绕会发光的种子。",
+          "tags": [
+            "农场",
+            "植物",
+            "种子",
+            "自然"
+          ],
+          "search_text": "四季农场 麦田、果树与小木屋围绕会发光的种子。 农场 植物 种子 自然",
+          "score": 0.1129
+        }
+      ],
+      "images": [
+        {
+          "id": "img-ocean-coral",
+          "type": "image",
+          "title": "发光珊瑚城",
+          "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+          "tags": [
+            "海底",
+            "珊瑚",
+            "环保",
+            "鱼群"
+          ],
+          "asset": "assets/images/img-ocean-coral.png",
+          "search_text": "发光珊瑚城 儿童绘本扁平插画，可作为场景构图与色板参考。 海底 珊瑚 环保 鱼群",
+          "score": 0.6307
+        },
+        {
+          "id": "img-ocean-clean",
+          "type": "image",
+          "title": "海洋清洁队",
+          "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+          "tags": [
+            "海洋",
+            "环保",
+            "守护",
+            "合作"
+          ],
+          "asset": "assets/images/img-ocean-clean.png",
+          "search_text": "海洋清洁队 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 环保 守护 合作",
+          "score": 0.5301
+        },
+        {
+          "id": "img-ocean-whale",
+          "type": "image",
+          "title": "唱歌的小鲸鱼",
+          "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+          "tags": [
+            "海洋",
+            "鲸鱼",
+            "音乐",
+            "朋友"
+          ],
+          "asset": "assets/images/img-ocean-whale.png",
+          "search_text": "唱歌的小鲸鱼 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 鲸鱼 音乐 朋友",
+          "score": 0.3103
+        },
+        {
+          "id": "img-forest-river",
+          "type": "image",
+          "title": "森林音乐河",
+          "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+          "tags": [
+            "森林",
+            "河流",
+            "音乐",
+            "自然"
+          ],
+          "asset": "assets/images/img-forest-river.png",
+          "search_text": "森林音乐河 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 河流 音乐 自然",
+          "score": 0.3079
+        },
+        {
+          "id": "img-ocean-sub",
+          "type": "image",
+          "title": "潜水艇探险",
+          "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+          "tags": [
+            "海底",
+            "潜水艇",
+            "探索",
+            "冒险"
+          ],
+          "asset": "assets/images/img-ocean-sub.png",
+          "search_text": "潜水艇探险 儿童绘本扁平插画，可作为场景构图与色板参考。 海底 潜水艇 探索 冒险",
+          "score": 0.3054
+        },
+        {
+          "id": "img-forest-bird",
+          "type": "image",
+          "title": "蓝鸟回家",
+          "description": "儿童绘本扁平插画，可作为场景构图与色板参考。",
+          "tags": [
+            "森林",
+            "小鸟",
+            "友谊",
+            "鸟巢"
+          ],
+          "asset": "assets/images/img-forest-bird.png",
+          "search_text": "蓝鸟回家 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 小鸟 友谊 鸟巢",
+          "score": 0.2945
+        }
+      ],
+      "sounds": [
+        {
+          "id": "sfx-ocean",
+          "type": "sound",
+          "title": "温柔海浪",
+          "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+          "tags": [
+            "海洋",
+            "海底",
+            "水",
+            "放松"
+          ],
+          "asset": "assets/sounds/sfx-ocean.wav",
+          "search_text": "温柔海浪 3秒原创合成环境音，可循环作为场景氛围底音。 海洋 海底 水 放松",
+          "score": 0.3843
+        },
+        {
+          "id": "sfx-forest",
+          "type": "sound",
+          "title": "月夜森林",
+          "description": "3秒原创合成环境音，可循环作为场景氛围底音。",
+          "tags": [
+            "森林",
+            "夜晚",
+            "虫鸣",
+            "自然"
+          ],
+          "asset": "assets/sounds/sfx-forest.wav",
+          "search_text": "月夜森林 3秒原创合成环境音，可循环作为场景氛围底音。 森林 夜晚 虫鸣 自然",
+          "score": 0.3048
+        }
+      ]
+    },
+    "advice": {
+      "story_structure": "参考《珊瑚城清洁队》的三幕结构：遇到问题—尝试合作—完成成长。",
+      "visual_direction": "以“发光珊瑚城”为首图，统一主角服装、色板和镜头风格。",
+      "audio_direction": "环境底音选用“温柔海浪”，对白优先保持清晰。"
+    }
+  },
+  "story": {
+    "title": "小星和珊瑚花园的秘密",
+    "idea": "森林里的小鸟寻找丢失的歌声",
+    "theme": "环保与合作",
+    "characters": [
+      {
+        "name": "小星",
+        "role": "主角",
+        "description": "勇敢、好奇的8岁女孩，黄色外套，蓝色小背包"
+      },
+      {
+        "name": "泡泡",
+        "role": "伙伴",
+        "description": "来自素材库的向导伙伴，善于发现线索。"
+      }
+    ],
+    "scenes": [
+      {
+        "id": 1,
+        "title": "出发",
+        "setting": "发光的海底珊瑚城",
+        "content": "小星在发光的海底珊瑚城发现一束忽明忽暗的光。它像在求救，也像在邀请。虽然心里有一点紧张，小星还是背好小背包，决定跟着光向前走。",
+        "emotion": "好奇"
+      },
+      {
+        "id": 2,
+        "title": "一起想办法",
+        "setting": "发光的海底珊瑚城",
+        "content": "路被突然出现的障碍挡住了。小星没有独自逞强，而是和泡泡交换各自看到的线索。他们试了两次都没有成功，第三次终于找到了既安全又照顾大家的办法。",
+        "emotion": "紧张到坚定"
+      },
+      {
+        "id": 3,
+        "title": "把光分享出去",
+        "setting": "发光的海底珊瑚城",
+        "content": "障碍消失后，微弱的光连成了一条明亮的路。小星明白，真正的勇敢不是从不害怕，而是愿意倾听伙伴、继续尝试，并把得到的光分享给后来的人。",
+        "emotion": "温暖"
+      }
+    ],
+    "moral": "环保与合作不是口号，而是在遇到困难时做出的每一个小选择。",
+    "generation": {
+      "mode": "offline-deterministic-agent",
+      "material_backend": "visual-semantic-fallback"
+    }
+  },
+  "artifacts": {
+    "story": "outputs/agent/homework6/case-02-ocean/story.json",
+    "images": [
+      "outputs/agent/homework6/case-02-ocean/images/scene-01.png",
+      "outputs/agent/homework6/case-02-ocean/images/scene-02.png",
+      "outputs/agent/homework6/case-02-ocean/images/scene-03.png"
+    ],
+    "audio": "outputs/agent/homework6/case-02-ocean/narration.mp3",
+    "audio_duration_seconds": 57.648,
+    "video": "outputs/agent/homework6/case-02-ocean/story-video.mp4",
+    "video_duration_seconds": 57.648
+  },
+  "workflow_log": [
+    {
+      "sequence": 1,
+      "action": "planner",
+      "status": "completed",
+      "elapsed_seconds": 0.0,
+      "inputs": {
+        "idea": "森林里的小鸟寻找丢失的歌声"
+      },
+      "outputs": {
+        "steps": 5
+      }
+    },
+    {
+      "sequence": 2,
+      "action": "human_intervention",
+      "status": "completed",
+      "elapsed_seconds": 0.0,
+      "inputs": {
+        "instruction": "保留友谊主题，把场景换到海底",
+        "before": {
+          "protagonist": "小星",
+          "profile": "勇敢、好奇的8岁女孩，黄色外套，蓝色小背包",
+          "setting": "雨后的月光森林",
+          "theme": "友谊与勇气"
+        }
+      },
+      "outputs": {
+        "after": {
+          "protagonist": "小星",
+          "profile": "勇敢、好奇的8岁女孩，黄色外套，蓝色小背包",
+          "setting": "发光的海底珊瑚城",
+          "theme": "环保与合作"
+        },
+        "invalidated": [
+          "materials",
+          "story",
+          "artifacts"
+        ]
+      }
+    },
+    {
+      "sequence": 3,
+      "action": "retrieve_materials",
+      "status": "completed",
+      "elapsed_seconds": 0.048,
+      "inputs": {
+        "query": "森林里的小鸟寻找丢失的歌声；主角小星；场景发光的海底珊瑚城；主题环保与合作"
+      },
+      "outputs": {
+        "keys": [
+          "query",
+          "backend",
+          "materials",
+          "advice"
+        ],
+        "backend": "visual-semantic-fallback"
+      }
+    },
+    {
+      "sequence": 4,
+      "action": "write_structured_story",
+      "status": "completed",
+      "elapsed_seconds": 0.001,
+      "inputs": {
+        "idea": "森林里的小鸟寻找丢失的歌声",
+        "protagonist": "小星",
+        "profile": "勇敢、好奇的8岁女孩，黄色外套，蓝色小背包",
+        "setting": "发光的海底珊瑚城",
+        "theme": "环保与合作",
+        "materials_json": "{\"query\": \"森林里的小鸟寻找丢失的歌声；主角小星；场景发光的海底珊瑚城；主题环保与合作\", \"backend\": \"visual-semantic-fallback\", \"materials\": {\"templates\": [{\"id\": \"tpl-ocean\", \"type\": \"template\", \"title\": \"珊瑚城清洁队\", \"description\": \"海洋环保。孩子与小鲸鱼清理漂浮垃圾，让黯淡的珊瑚重新发光。\", \"tags\": [\"海底\", \"鲸鱼\", \"珊瑚\", \"环保\", \"守护\"], \"search_text\": \"珊瑚城清洁队 海洋环保。孩子与小鲸鱼清理漂浮垃圾，让黯淡的珊瑚重新发光。 海底 鲸鱼 珊瑚 环保 守护\", \"score\": 0.5889}, {\"id\": \"tpl-forest\", \"type\": \"template\", \"title\": \"月光森林的约定\", \"description\": \"森林友谊。两个性格不同的伙伴循着月光脚印，合作送迷路的小鸟回家。\", \"tags\": [\"森林\", \"月光\", \"友谊\", \"小鸟\", \"合作\"], \"search_text\": \"月光森林的约定 森林友谊。两个性格不同的伙伴循着月光脚印，合作送迷路的小鸟回家。 森林 月光 友谊 小鸟 合作\", \"score\": 0.2679}, {\"id\": \"tpl-music\", \"type\": \"template\", \"title\": \"丢失的七个音符\", \"description\": \"音乐奇遇。七个音符躲进不同场景，主角用想象力找回完整旋律。\", \"tags\": [\"音乐\", \"乐器\", \"想象\", \"冒险\", \"合作\"], \"search_text\": \"丢失的七个音符 音乐奇遇。七个音符躲进不同场景，主角用想象力找回完整旋律。 音乐 乐器 想象 冒险 合作\", \"score\": 0.1092}], \"characters\": [{\"id\": \"char-whale\", \"type\": \"character\", \"title\": \"泡泡\", \"description\": \"爱唱歌的小鲸鱼，熟悉每一片珊瑚\", \"tags\": [\"鲸鱼\", \"海洋\", \"音乐\", \"环保\"], \"search_text\": \"泡泡 爱唱歌的小鲸鱼，熟悉每一片珊瑚 鲸鱼 海洋 音乐 环保\", \"score\": 0.5027}, {\"id\": \"char-fairy\", \"type\": \"character\", \"title\": \"露珠\", \"description\": \"守护植物的叶片精灵\", \"tags\": [\"精灵\", \"魔法\", \"植物\", \"环保\"], \"search_text\": \"露珠 守护植物的叶片精灵 精灵 魔法 植物 环保\", \"score\": 0.2869}, {\"id\": \"char-bird\", \"type\": \"character\", \"title\": \"蓝羽\", \"description\": \"会说话的蓝色小鸟，机灵但偶尔胆小\", \"tags\": [\"小鸟\", \"森林\", \"朋友\", \"蓝色\"], \"search_text\": \"蓝羽 会说话的蓝色小鸟，机灵但偶尔胆小 小鸟 森林 朋友 蓝色\", \"score\": 0.2782}], \"scenes\": [{\"id\": \"scene-coral\", \"type\": \"scene\", \"title\": \"珊瑚花园\", \"description\": \"彩色珊瑚与鱼群围绕透明海底城，光束穿过水面。\", \"tags\": [\"海底\", \"珊瑚\", \"鱼\", \"海洋\"], \"search_text\": \"珊瑚花园 彩色珊瑚与鱼群围绕透明海底城，光束穿过水面。 海底 珊瑚 鱼 海洋\", \"score\": 0.4183}, {\"id\": \"scene-moonforest\", \"type\": \"scene\", \"title\": \"月光森林\", \"description\": \"高大树木围住一条发光小路，叶间落下柔和月光。\", \"tags\": [\"森林\", \"月光\", \"树木\", \"夜晚\"], \"search_text\": \"月光森林 高大树木围住一条发光小路，叶间落下柔和月光。 森林 月光 树木 夜晚\", \"score\": 0.2754}, {\"id\": \"scene-farm\", \"type\": \"scene\", \"title\": \"四季农场\", \"description\": \"麦田、果树与小木屋围绕会发光的种子。\", \"tags\": [\"农场\", \"植物\", \"种子\", \"自然\"], \"search_text\": \"四季农场 麦田、果树与小木屋围绕会发光的种子。 农场 植物 种子 自然\", \"score\": 0.1129}], \"images\": [{\"id\": \"img-ocean-coral\", \"type\": \"image\", \"title\": \"发光珊瑚城\", \"description\": \"儿童绘本扁平插画，可作为场景构图与色板参考。\", \"tags\": [\"海底\", \"珊瑚\", \"环保\", \"鱼群\"], \"asset\": \"assets/images/img-ocean-coral.png\", \"search_text\": \"发光珊瑚城 儿童绘本扁平插画，可作为场景构图与色板参考。 海底 珊瑚 环保 鱼群\", \"score\": 0.6307}, {\"id\": \"img-ocean-clean\", \"type\": \"image\", \"title\": \"海洋清洁队\", \"description\": \"儿童绘本扁平插画，可作为场景构图与色板参考。\", \"tags\": [\"海洋\", \"环保\", \"守护\", \"合作\"], \"asset\": \"assets/images/img-ocean-clean.png\", \"search_text\": \"海洋清洁队 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 环保 守护 合作\", \"score\": 0.5301}, {\"id\": \"img-ocean-whale\", \"type\": \"image\", \"title\": \"唱歌的小鲸鱼\", \"description\": \"儿童绘本扁平插画，可作为场景构图与色板参考。\", \"tags\": [\"海洋\", \"鲸鱼\", \"音乐\", \"朋友\"], \"asset\": \"assets/images/img-ocean-whale.png\", \"search_text\": \"唱歌的小鲸鱼 儿童绘本扁平插画，可作为场景构图与色板参考。 海洋 鲸鱼 音乐 朋友\", \"score\": 0.3103}, {\"id\": \"img-forest-river\", \"type\": \"image\", \"title\": \"森林音乐河\", \"description\": \"儿童绘本扁平插画，可作为场景构图与色板参考。\", \"tags\": [\"森林\", \"河流\", \"音乐\", \"自然\"], \"asset\": \"assets/images/img-forest-river.png\", \"search_text\": \"森林音乐河 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 河流 音乐 自然\", \"score\": 0.3079}, {\"id\": \"img-ocean-sub\", \"type\": \"image\", \"title\": \"潜水艇探险\", \"description\": \"儿童绘本扁平插画，可作为场景构图与色板参考。\", \"tags\": [\"海底\", \"潜水艇\", \"探索\", \"冒险\"], \"asset\": \"assets/images/img-ocean-sub.png\", \"search_text\": \"潜水艇探险 儿童绘本扁平插画，可作为场景构图与色板参考。 海底 潜水艇 探索 冒险\", \"score\": 0.3054}, {\"id\": \"img-forest-bird\", \"type\": \"image\", \"title\": \"蓝鸟回家\", \"description\": \"儿童绘本扁平插画，可作为场景构图与色板参考。\", \"tags\": [\"森林\", \"小鸟\", \"友谊\", \"鸟巢\"], \"asset\": \"assets/images/img-forest-bird.png\", \"search_text\": \"蓝鸟回家 儿童绘本扁平插画，可作为场景构图与色板参考。 森林 小鸟 友谊 鸟巢\", \"score\": 0.2945}], \"sounds\": [{\"id\": \"sfx-ocean\", \"type\": \"sound\", \"title\": \"温柔海浪\", \"description\": \"3秒原创合成环境音，可循环作为场景氛围底音。\", \"tags\": [\"海洋\", \"海底\", \"水\", \"放松\"], \"asset\": \"assets/sounds/sfx-ocean.wav\", \"search_text\": \"温柔海浪 3秒原创合成环境音，可循环作为场景氛围底音。 海洋 海底 水 放松\", \"score\": 0.3843}, {\"id\": \"sfx-forest\", \"type\": \"sound\", \"title\": \"月夜森林\", \"description\": \"3秒原创合成环境音，可循环作为场景氛围底音。\", \"tags\": [\"森林\", \"夜晚\", \"虫鸣\", \"自然\"], \"asset\": \"assets/sounds/sfx-forest.wav\", \"search_text\": \"月夜森林 3秒原创合成环境音，可循环作为场景氛围底音。 森林 夜晚 虫鸣 自然\", \"score\": 0.3048}]}, \"advice\": {\"story_structure\": \"参考《珊瑚城清洁队》的三幕结构：遇到问题—尝试合作—完成成长。\", \"visual_direction\": \"以“发光珊瑚城”为首图，统一主角服装、色板和镜头风格。\", \"audio_direction\": \"环境底音选用“温柔海浪”，对白优先保持清晰。\"}}"
+      },
+      "outputs": {
+        "keys": [
+          "title",
+          "idea",
+          "theme",
+          "characters",
+          "scenes",
+          "moral",
+          "generation"
+        ],
+        "title": "小星和珊瑚花园的秘密"
+      }
+    },
+    {
+      "sequence": 5,
+      "action": "illustrate_scenes",
+      "status": "completed",
+      "elapsed_seconds": 0.132,
+      "inputs": {
+        "story_json": "{\"title\": \"小星和珊瑚花园的秘密\", \"idea\": \"森林里的小鸟寻找丢失的歌声\", \"theme\": \"环保与合作\", \"characters\": [{\"name\": \"小星\", \"role\": \"主角\", \"description\": \"勇敢、好奇的8岁女孩，黄色外套，蓝色小背包\"}, {\"name\": \"泡泡\", \"role\": \"伙伴\", \"description\": \"来自素材库的向导伙伴，善于发现线索。\"}], \"scenes\": [{\"id\": 1, \"title\": \"出发\", \"setting\": \"发光的海底珊瑚城\", \"content\": \"小星在发光的海底珊瑚城发现一束忽明忽暗的光。它像在求救，也像在邀请。虽然心里有一点紧张，小星还是背好小背包，决定跟着光向前走。\", \"emotion\": \"好奇\"}, {\"id\": 2, \"title\": \"一起想办法\", \"setting\": \"发光的海底珊瑚城\", \"content\": \"路被突然出现的障碍挡住了。小星没有独自逞强，而是和泡泡交换各自看到的线索。他们试了两次都没有成功，第三次终于找到了既安全又照顾大家的办法。\", \"emotion\": \"紧张到坚定\"}, {\"id\": 3, \"title\": \"把光分享出去\", \"setting\": \"发光的海底珊瑚城\", \"content\": \"障碍消失后，微弱的光连成了一条明亮的路。小星明白，真正的勇敢不是从不害怕，而是愿意倾听伙伴、继续尝试，并把得到的光分享给后来的人。\", \"emotion\": \"温暖\"}], \"moral\": \"环保与合作不是口号，而是在遇到困难时做出的每一个小选择。\", \"generation\": {\"mode\": \"offline-deterministic-agent\", \"material_backend\": \"visual-semantic-fallback\"}}",
+        "output_dir": "D:\\AA流星宝\\aigc_story_project\\outputs\\agent\\homework6\\case-02-ocean"
+      },
+      "outputs": {
+        "keys": [
+          "images"
+        ],
+        "image_count": 3
+      }
+    },
+    {
+      "sequence": 6,
+      "action": "synthesize_narration",
+      "status": "completed",
+      "elapsed_seconds": 5.881,
+      "inputs": {
+        "story_json": "{\"title\": \"小星和珊瑚花园的秘密\", \"idea\": \"森林里的小鸟寻找丢失的歌声\", \"theme\": \"环保与合作\", \"characters\": [{\"name\": \"小星\", \"role\": \"主角\", \"description\": \"勇敢、好奇的8岁女孩，黄色外套，蓝色小背包\"}, {\"name\": \"泡泡\", \"role\": \"伙伴\", \"description\": \"来自素材库的向导伙伴，善于发现线索。\"}], \"scenes\": [{\"id\": 1, \"title\": \"出发\", \"setting\": \"发光的海底珊瑚城\", \"content\": \"小星在发光的海底珊瑚城发现一束忽明忽暗的光。它像在求救，也像在邀请。虽然心里有一点紧张，小星还是背好小背包，决定跟着光向前走。\", \"emotion\": \"好奇\"}, {\"id\": 2, \"title\": \"一起想办法\", \"setting\": \"发光的海底珊瑚城\", \"content\": \"路被突然出现的障碍挡住了。小星没有独自逞强，而是和泡泡交换各自看到的线索。他们试了两次都没有成功，第三次终于找到了既安全又照顾大家的办法。\", \"emotion\": \"紧张到坚定\"}, {\"id\": 3, \"title\": \"把光分享出去\", \"setting\": \"发光的海底珊瑚城\", \"content\": \"障碍消失后，微弱的光连成了一条明亮的路。小星明白，真正的勇敢不是从不害怕，而是愿意倾听伙伴、继续尝试，并把得到的光分享给后来的人。\", \"emotion\": \"温暖\"}], \"moral\": \"环保与合作不是口号，而是在遇到困难时做出的每一个小选择。\", \"generation\": {\"mode\": \"offline-deterministic-agent\", \"material_backend\": \"visual-semantic-fallback\"}}",
+        "output_dir": "D:\\AA流星宝\\aigc_story_project\\outputs\\agent\\homework6\\case-02-ocean"
+      },
+      "outputs": {
+        "keys": [
+          "audio",
+          "audio_duration_seconds"
+        ],
+        "audio": "outputs/agent/homework6/case-02-ocean/narration.mp3"
+      }
+    },
+    {
+      "sequence": 7,
+      "action": "compose_story_video",
+      "status": "completed",
+      "elapsed_seconds": 2.799,
+      "inputs": {
+        "images_json": "[\"outputs/agent/homework6/case-02-ocean/images/scene-01.png\", \"outputs/agent/homework6/case-02-ocean/images/scene-02.png\", \"outputs/agent/homework6/case-02-ocean/images/scene-03.png\"]",
+        "audio_path": "D:\\AA流星宝\\aigc_story_project\\outputs\\agent\\homework6\\case-02-ocean\\narration.mp3",
+        "output_dir": "D:\\AA流星宝\\aigc_story_project\\outputs\\agent\\homework6\\case-02-ocean"
+      },
+      "outputs": {
+        "keys": [
+          "video",
+          "video_duration_seconds"
+        ],
+        "video": "outputs/agent/homework6/case-02-ocean/story-video.mp4"
+      }
+    }
+  ]
+}

@@ -216,6 +216,14 @@ button {
   background: var(--secondary);
 }
 
+.library-link {
+  color: #0f7770;
+}
+
+.agent-link {
+  color: #6f50a7;
+}
+
 .hero-copy {
   max-width: 760px;
   margin: 70px auto 36px;
@@ -959,6 +967,26 @@ button {
 .video-cta {
   border-color: color-mix(in srgb, var(--accent) 34%, transparent);
   background: linear-gradient(135deg, #fff, var(--accent-soft));
+}
+
+.library-cta {
+  background: #eef9f4;
+  border-color: #c8e8db;
+}
+
+.library-cta small,
+.library-cta a {
+  color: #197866;
+}
+
+.agent-cta {
+  background: #f4f0fb;
+  border-color: #dcd0ef;
+}
+
+.agent-cta small,
+.agent-cta a {
+  color: #6f50a7;
 }
 
 .video-cta a {

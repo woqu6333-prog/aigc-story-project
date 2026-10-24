@@ -1,4 +1,4 @@
-"""构建作业0主页、作业2网页绘本与作业3同步有声书。"""
+"""构建作业0–6统一静态演示网站。"""
 
 from __future__ import annotations
 
@@ -16,6 +16,10 @@ AUDIOBOOK_OUTPUT = PROJECT_ROOT / "outputs" / "audio" / "homework3"
 AUDIOBOOK_SCRIPT = PROJECT_ROOT / "outputs" / "stories" / "homework3-audiobook-script.json"
 VIDEO_DIR = PROJECT_ROOT / "src" / "video_web"
 VIDEO_OUTPUT = PROJECT_ROOT / "outputs" / "video" / "homework4"
+LIBRARY_DIR = PROJECT_ROOT / "src" / "library_web"
+LIBRARY_OUTPUT = PROJECT_ROOT / "outputs" / "library" / "homework5"
+AGENT_DIR = PROJECT_ROOT / "src" / "agent_web"
+AGENT_OUTPUT = PROJECT_ROOT / "outputs" / "agent" / "homework6"
 DIST_DIR = PROJECT_ROOT / "dist"
 
 
@@ -42,6 +46,15 @@ def build() -> None:
         path = VIDEO_OUTPUT / required_video_file
         if not path.exists():
             raise FileNotFoundError(f"找不到作业4视频成果：{path}")
+    if not LIBRARY_DIR.exists() or not (LIBRARY_OUTPUT / "index.json").exists():
+        raise FileNotFoundError("找不到作业5素材库，请先运行scripts/build_material_library.py")
+    if not AGENT_DIR.exists():
+        raise FileNotFoundError(f"找不到作业6网页源码：{AGENT_DIR}")
+    for case_id in ("case-01-space", "case-02-ocean"):
+        for filename in ("agent-state.json", "story-video.mp4"):
+            path = AGENT_OUTPUT / case_id / filename
+            if not path.exists():
+                raise FileNotFoundError(f"找不到作业6案例成果：{path}")
 
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copytree(SOURCE_DIR, DIST_DIR, dirs_exist_ok=True)
@@ -76,6 +89,25 @@ def build() -> None:
     video_data = video_dist / "data"
     video_data.mkdir(parents=True, exist_ok=True)
     shutil.copy2(VIDEO_OUTPUT / "video-plan.json", video_data / "video-plan.json")
+
+    library_dist = DIST_DIR / "library"
+    shutil.copytree(LIBRARY_DIR, library_dist, dirs_exist_ok=True)
+    shutil.copytree(LIBRARY_OUTPUT / "assets", library_dist / "assets", dirs_exist_ok=True)
+    library_data = library_dist / "data"
+    library_data.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(LIBRARY_OUTPUT / "index.json", library_data / "index.json")
+    shutil.copy2(LIBRARY_OUTPUT / "evaluation.json", library_data / "evaluation.json")
+
+    agent_dist = DIST_DIR / "agent"
+    shutil.copytree(AGENT_DIR, agent_dist, dirs_exist_ok=True)
+    agent_data = agent_dist / "data"
+    agent_media = agent_dist / "media"
+    agent_data.mkdir(parents=True, exist_ok=True)
+    for case_id in ("case-01-space", "case-02-ocean"):
+        shutil.copy2(AGENT_OUTPUT / case_id / "agent-state.json", agent_data / f"{case_id}.json")
+        case_media = agent_media / case_id
+        case_media.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(AGENT_OUTPUT / case_id / "story-video.mp4", case_media / "story-video.mp4")
     print(f"静态网站已生成：{DIST_DIR}")
 
 
